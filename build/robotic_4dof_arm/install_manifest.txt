@@ -1,5 +1,6 @@
 /home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/urdf/arm.urdf.xacro
 /home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/launch/gazebo.launch.py
+/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/launch/display.launch.py
 /home/plsh/robotic_arm/install/robotic_4dof_arm/share/ament_index/resource_index/package_run_dependencies/robotic_4dof_arm
 /home/plsh/robotic_arm/install/robotic_4dof_arm/share/ament_index/resource_index/parent_prefix_path/robotic_4dof_arm
 /home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/environment/ament_prefix_path.sh
