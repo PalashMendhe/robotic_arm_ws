@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<robot name="arm">
+  <group name="arm">
+    <joint name="arm_base_joint"/>
+    <joint name="upper_arm_joint"/>
+    <joint name="forearm_joint"/>
+    <joint name="wrist_joint"/>
+    <joint name="gripper_baseTOwrist_joint"/>
+    <joint name="gripper_base_joint"/>
+  </group>
+
+  <group name="gripper">
+    <joint name="right_prong_joint"/>
+    <joint name="left_prong_joint"/>
+  </group>
+
+  <end_effector name="gripper" parent_link="gripper_base_link" group="gripper"/>
+
+  <group_state name="home" group="arm">
+    <joint name="arm_base_joint" value="0"/>
+    <joint name="upper_arm_joint" value="0"/>
+    <joint name="forearm_joint" value="0"/>
+    <joint name="wrist_joint" value="0"/>
+    <joint name="gripper_baseTOwrist_joint" value="0"/>
+    <joint name="gripper_base_joint" value="0"/>
+  </group_state>
+
+  <group_state name="open" group="gripper">
+    <joint name="right_prong_joint" value="0.04"/>
+    <joint name="left_prong_joint" value="-0.04"/>
+  </group_state>
+
+  <group_state name="closed" group="gripper">
+    <joint name="right_prong_joint" value="0"/>
+    <joint name="left_prong_joint" value="0"/>
+  </group_state>
+
+  <disable_collisions link1="arm_base_link" link2="upper_arm_link" reason="Adjacent"/>
+  <disable_collisions link1="upper_arm_link" link2="forearm_link" reason="Adjacent"/>
+  <disable_collisions link1="upper_arm_link" link2="upper_forearm_link" reason="Adjacent"/>
+  <disable_collisions link1="forearm_link" link2="wrist_link" reason="Adjacent"/>
+  <disable_collisions link1="forearm_link" link2="forearm_wrist_link" reason="Adjacent"/>
+  <disable_collisions link1="wrist_link" link2="gripper_baseTOwrist_link" reason="Adjacent"/>
+  <disable_collisions link1="gripper_baseTOwrist_link" link2="gripper_base_link" reason="Adjacent"/>
+  <disable_collisions link1="gripper_base_link" link2="right_prong_link" reason="Adjacent"/>
+  <disable_collisions link1="gripper_base_link" link2="left_prong_link" reason="Adjacent"/>
+</robot>
