@@ -1,0 +1,389 @@
+<?xml version="1.0"?>
+<robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- ==================== PROPERTIES ==================== -->
+  <!-- UR5 DH Parameters
+       Joint | a (m)  | d (m)  | alpha
+         1   |  0     | 0.089  | +90°
+         2   | -0.425 | 0      |   0°
+         3   | -0.392 | 0      |   0°
+         4   |  0     | 0.109  | +90°
+         5   |  0     | 0.095  | -90°
+         6   |  0     | 0.082  |   0°
+  -->
+  <xacro:property name="arm_base_link_height" value="0.02"/>
+  <xacro:property name="arm_base_link_radius" value="0.05"/>
+  <xacro:property name="arm_base_link_weight" value="0.3"/>
+  <!-- UR5 DH link lengths / offsets -->
+  <xacro:property name="d1"  value="0.089"/>   <!-- Joint 1 z-offset  -->
+  <xacro:property name="a2"  value="0.425"/>   <!-- Upper arm length   (|a2|) -->
+  <xacro:property name="a3"  value="0.392"/>   <!-- Forearm length     (|a3|) -->
+  <xacro:property name="d4"  value="0.109"/>   <!-- Wrist-1 z-offset   -->
+  <xacro:property name="d5"  value="0.095"/>   <!-- Wrist-2 z-offset   -->
+  <xacro:property name="d6"  value="0.082"/>   <!-- Tool z-offset      -->
+  <!-- ==================== Inertia Macros ================ -->
+  <!-- Cylinder Inertia -->
+  <xacro:macro name="cylinder_inertia" params="m r h">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="${m}"/>
+      <inertia
+        ixx="${(1/12)*m*(3*r*r+h*h)}"
+        ixy="0" ixz="0"
+        iyy="${(1/12)*m*(3*r*r+h*h)}"
+        iyz="0"
+        izz="${(1/2)*m*r*r}"/>
+    </inertial>
+  </xacro:macro>
+  <!--Sphere Inertia -->
+  <xacro:macro name="sphere_inertia" params="m r">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="${m}"/>
+      <inertia
+        ixx="${(2/5)*m*r*r}"
+        ixy="0" ixz="0"
+        iyy="${(2/5)*m*r*r}"
+        iyz="0"
+        izz="${(2/5)*m*r*r}"/>
+    </inertial>
+  </xacro:macro>
+  <!-- Box Inertia -->
+  <xacro:macro name="box_inertia" params="m x y z">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="${m}"/>
+      <inertia
+        ixx="${(1/12)*m*(y*y+z*z)}"
+        ixy="0" ixz="0"
+        iyy="${(1/12)*m*(x*x+z*z)}"
+        iyz="0"
+        izz="${(1/12)*m*(x*x+y*y)}"/>
+    </inertial>
+  </xacro:macro>
+  <!-- ==================== ARM BASE LINK ==================== -->
+  <link name="world"/>
+  <link name="arm_base_link">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <cylinder radius="${arm_base_link_radius}" length="${arm_base_link_height}"/>
+    </geometry>
+    <material name="orange">
+      <color rgba="0.85 0.035 0 1"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <cylinder radius="0.05" length="0.02"/>
+    </geometry>
+  </collision>
+  <xacro:cylinder_inertia m="${arm_base_link_weight}" r="${arm_base_link_radius}" h="${arm_base_link_height}"/>
+  </link>
+  <!-- Joint 1: shoulder pan  — d1=0.089 m up, alpha=+90 deg -->
+  <joint name="arm_base_joint" type="revolute">
+    <parent link="world"/>
+    <child link="arm_base_link"/>
+    <origin xyz="0.0 0 ${d1}" rpy="0 0 0"/>
+    <limit lower="-3.14" upper="3.14" effort="150" velocity="3.14"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <!-- ==================== UPPER ARM LINK ==================== -->
+  <!-- Length = |a2| = 0.425 m  (UR5 upper arm) -->
+  <link name="upper_arm_link">
+    <visual>
+      <origin xyz="0 0 ${a2/2}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.025" length="${a2}"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.035 0.035 0.85 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${a2/2}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.025" length="${a2}"/>
+      </geometry>
+    </collision>
+    <xacro:cylinder_inertia m="8.393" r="0.025" h="${a2}"/>
+  </link>
+  <!-- Joint 2: shoulder lift — a2=0.425 m along z, alpha=0 deg, d=0
+       A -90 deg rotation about y aligns the arm correctly for RViz zero-pose -->
+  <joint name="upper_arm_joint" type="revolute">
+    <parent link="arm_base_link"/>
+    <child link="upper_arm_link"/>
+    <origin xyz="0 0 0.01" rpy="0 -1.5707 0"/>
+    <limit lower="-3.14" upper="3.14" effort="150" velocity="3.14"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <!-- ==================== UPPER-FORE ARM (elbow sphere) ==================== -->
+  <link name="upper_forearm_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0375"/>
+      </geometry>
+      <material name="cyan">
+        <color rgba="0.035 0.85 0.85 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.025"/>
+      </geometry>
+    </collision>
+    <xacro:sphere_inertia m="0.3" r="0.025"/>
+  </link>
+  <!-- Fixed cosmetic elbow sphere at end of upper arm -->
+  <joint name="upper_forearm_joint" type="fixed">
+    <parent link="upper_arm_link"/>
+    <child link="upper_forearm_link"/>
+    <origin xyz="0 0 ${a2}" rpy="0 1.5707 0"/>
+  </joint>
+  <!-- ==================== FOREARM LINK ==================== -->
+  <!-- Length = |a3| = 0.392 m  (UR5 forearm) -->
+  <link name="forearm_link">
+    <visual>
+      <origin xyz="0 0 ${a3/2}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.022" length="${a3}"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0.035 0.85 0.035 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${a3/2}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.022" length="${a3}"/>
+      </geometry>
+    </collision>
+    <xacro:cylinder_inertia m="2.275" r="0.022" h="${a3}"/>
+  </link>
+  <!-- Joint 3: elbow — a3=0.392 m, alpha=0 deg, d=0 -->
+  <joint name="forearm_joint" type="revolute">
+    <parent link="upper_arm_link"/>
+    <child link="forearm_link"/>
+    <origin xyz="0 0 ${a2}" rpy="0 0 0"/>
+    <limit lower="-3.14" upper="3.14" effort="150" velocity="3.14"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <!-- ==================== FOREARM-WRIST (wrist sphere) ==================== -->
+  <link name="forearm_wrist_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0375"/>
+      </geometry>
+      <material name="cyan">
+        <color rgba="0.035 0.85 0.85 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.025"/>
+      </geometry>
+    </collision>
+    <xacro:sphere_inertia m="0.3" r="0.025"/>
+  </link>
+  <!-- Fixed cosmetic wrist sphere at end of forearm -->
+  <joint name="forearm_wrist_joint" type="fixed">
+    <parent link="forearm_link"/>
+    <child link="forearm_wrist_link"/>
+    <origin xyz="0 0 ${a3}" rpy="0 0 0"/>
+  </joint>
+  <!-- ==================== WRIST LINK (wrist-1) ==================== -->
+  <!-- d4 = 0.109 m -->
+  <link name="wrist_link">
+    <visual>
+      <origin xyz="0 0 ${d4/2}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="${d4}"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.85 0.035 0.035 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${d4/2}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="${d4}"/>
+      </geometry>
+    </collision>
+    <xacro:cylinder_inertia m="1.219" r="0.02" h="${d4}"/>
+  </link>
+  <!-- Joint 4: wrist-1 — d4=0.109 m, alpha=+90 deg, a=0 -->
+  <joint name="wrist_joint" type="revolute">
+    <parent link="forearm_link"/>
+    <child link="wrist_link"/>
+    <origin xyz="0 0 ${a3}" rpy="1.5707 0 0"/>
+    <limit lower="-3.14" upper="3.14" effort="28" velocity="3.14"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <!-- ==================== GRIPPER_BASE_TO_WRIST (wrist-2) ==================== -->
+  <!-- d5 = 0.095 m -->
+  <link name="gripper_baseTOwrist_link">
+    <visual>
+      <origin xyz="0 0 ${d5/2}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.018" length="${d5}"/>
+      </geometry>
+      <material name="cyan">
+        <color rgba="0.035 0.85 0.85 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${d5/2}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.018" length="${d5}"/>
+      </geometry>
+    </collision>
+    <xacro:cylinder_inertia m="1.219" r="0.018" h="${d5}"/>
+  </link>
+  <!-- Joint 5: wrist-2 — d5=0.095 m, alpha=-90 deg, a=0 -->
+  <joint name="gripper_baseTOwrist_joint" type="revolute">
+    <parent link="wrist_link"/>
+    <child link="gripper_baseTOwrist_link"/>
+    <origin xyz="0 0 ${d4}" rpy="-1.5707 0 0"/>
+    <limit lower="-3.14" upper="3.14" effort="28" velocity="3.14"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <!-- ==================== GRIPPER BASE LINK (tool flange / wrist-3) ==================== -->
+  <!-- d6 = 0.082 m -->
+  <link name="gripper_base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.008 0.04 0.04"/>
+      </geometry>
+      <material name="cyan">
+        <color rgba="0.035 0.85 0.85 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.008 0.04 0.04"/>
+      </geometry>
+    </collision>
+    <xacro:box_inertia m="0.2" x="0.008" y="0.04" z="0.04"/>
+  </link>
+  <!-- Joint 6: wrist-3 — d6=0.082 m, alpha=0 deg, a=0 -->
+  <joint name="gripper_base_joint" type="revolute">
+    <parent link="gripper_baseTOwrist_link"/>
+    <child link="gripper_base_link"/>
+    <origin xyz="0 0 ${d5}" rpy="0 0 0"/>
+    <limit lower="-3.14" upper="3.14" effort="28" velocity="3.14"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <!-- ==================== PRONGS ==================== -->
+  <!--RIGHT PRONG-->
+  <link name="right_prong_link">
+    <visual>
+      <origin xyz="0 0 0.018" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.005 0.1"/>
+      </geometry>
+      <material name="cyan">
+        <color rgba="0.035 0.85 0.85 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.018" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.005 0.1"/>
+      </geometry>
+    </collision>
+    <xacro:box_inertia m="0.05" x="0.02" y="0.015" z="0.1"/>
+  </link>
+  <joint name="right_prong_joint" type="prismatic">
+    <parent link="gripper_base_link"/>
+    <child link="right_prong_link"/>
+    <origin xyz="0 0.02 0.018" rpy="0 0 0"/>
+    <limit lower="0" upper="0.08" effort="10" velocity="1.0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <!--LEFT PRONG-->
+  <link name="left_prong_link">
+    <visual>
+      <origin xyz="0 0 0.018" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.005 0.1"/>
+      </geometry>
+      <material name="cyan">
+        <color rgba="0.035 0.85 0.85 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.018" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.005 0.1"/>
+      </geometry>
+    </collision>
+    <xacro:box_inertia m="0.05" x="0.02" y="0.015" z="0.1"/>
+  </link>
+  <joint name="left_prong_joint" type="prismatic">
+    <parent link="gripper_base_link"/>
+    <child link="left_prong_link"/>
+    <origin xyz="0 -0.02 0.018" rpy="0 0 0"/>
+    <limit lower="-0.08" upper="0" effort="10" velocity="1.0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <!-- =================================================== -->
+  <!-- ros2_control hardware interface -->
+<ros2_control name="arm_system" type="system">
+  <hardware>
+    <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+  </hardware>
+  <joint name="arm_base_joint">
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="upper_arm_joint">
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="forearm_joint">
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="wrist_joint">
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="gripper_baseTOwrist_joint">
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="gripper_base_joint">
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="right_prong_joint">
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="left_prong_joint">
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+</ros2_control>
+
+<!-- gz_ros2_control plugin -->
+<gazebo>
+  <plugin filename="gz_ros2_control-system"
+          name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+    <parameters>$(find arm_description)/config/controllers.yaml</parameters>
+  </plugin>
+</gazebo>
