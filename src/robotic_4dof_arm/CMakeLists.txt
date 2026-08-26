@@ -11,7 +11,7 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
-install(DIRECTORY urdf launch worlds
+install(DIRECTORY urdf launch worlds config
   DESTINATION share/${PROJECT_NAME}
 )
 if(BUILD_TESTING)

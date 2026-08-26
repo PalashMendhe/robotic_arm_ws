@@ -5,3 +5,4 @@ log/
 __pycache__/
 my_key
 my_key.pub
+BUGLOG.md

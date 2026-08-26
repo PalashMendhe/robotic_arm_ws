@@ -1,2 +1,1 @@
-source;share/robotic_4dof_arm/environment/ament_prefix_path.sh
-source;share/robotic_4dof_arm/environment/path.sh
+/home/plsh/robotic_arm/build/robotic_4dof_arm/ament_cmake_environment_hooks/local_setup.dsv
