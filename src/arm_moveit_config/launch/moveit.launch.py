@@ -5,6 +5,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
 
+
 def generate_launch_description():
 
     urdf_path = os.path.join(
@@ -69,6 +70,19 @@ def generate_launch_description():
                 planning_pipelines,
                 controllers,
                 {'use_sim_time': False},
+            ],
+            output='screen'
+        ),
+        Node(
+            package='moveit_ros_move_group',
+            executable='move_group',
+            parameters=[
+                {'robot_description': robot_description},
+                {'robot_description_semantic': robot_description_semantic},
+                {'robot_description_kinematics': kinematics},
+                ompl_config,
+                controllers,
+                {'use_sim_time': True},  # changed from False
             ],
             output='screen'
         ),

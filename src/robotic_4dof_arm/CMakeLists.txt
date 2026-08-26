@@ -14,6 +14,9 @@ find_package(geometry_msgs REQUIRED)
 install(DIRECTORY urdf launch worlds config
   DESTINATION share/${PROJECT_NAME}
 )
+install(PROGRAMS scripts/pick_and_place.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights

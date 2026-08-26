@@ -23,6 +23,13 @@ def generate_launch_description():
         Node(
             package='joint_state_publisher_gui',
             executable='joint_state_publisher_gui',
+            parameters=[{
+                'zeros': {
+                    'upper_arm_joint': 1.57,
+                    'forearm_joint': -1.57,
+                    'wrist_joint': -1.57
+                }
+            }]
         ),
         Node(
             package='rviz2',

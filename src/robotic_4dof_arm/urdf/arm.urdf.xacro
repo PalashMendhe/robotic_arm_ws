@@ -68,8 +68,8 @@
     <geometry>
       <cylinder radius="${arm_base_link_radius}" length="${arm_base_link_height}"/>
     </geometry>
-    <material name="orange">
-      <color rgba="0.85 0.035 0 1"/>
+    <material name="black">
+      <color rgba="0.1 0.1 0.1 1"/>
     </material>
   </visual>
   <collision>
@@ -84,7 +84,7 @@
   <joint name="arm_base_joint" type="revolute">
     <parent link="world"/>
     <child link="arm_base_link"/>
-    <origin xyz="0.0 0 ${d1}" rpy="0 0 0"/>
+    <origin xyz="0.0 0 0.01" rpy="0 0 0"/>
     <limit lower="-3.14" upper="3.14" effort="150" velocity="3.14"/>
     <axis xyz="0 0 1"/>
   </joint>
@@ -96,8 +96,8 @@
       <geometry>
         <cylinder radius="0.025" length="${a2}"/>
       </geometry>
-      <material name="blue">
-        <color rgba="0.035 0.035 0.85 1"/>
+      <material name="pale_blue">
+        <color rgba="0.6 0.8 1.0 1"/>
       </material>
     </visual>
     <collision>
@@ -117,24 +117,48 @@
     <limit lower="-3.14" upper="3.14" effort="150" velocity="3.14"/>
     <axis xyz="0 1 0"/>
   </joint>
-  <!-- ==================== UPPER-FORE ARM (elbow sphere) ==================== -->
-  <link name="upper_forearm_link">
+  <!-- ==================== BASE-UPPER ARM (cosmetic joint) ==================== -->
+  <link name="base_upper_link">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
-        <sphere radius="0.0375"/>
+        <cylinder radius="0.0375" length="0.06"/>
       </geometry>
-      <material name="cyan">
-        <color rgba="0.035 0.85 0.85 1"/>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
-        <sphere radius="0.025"/>
+        <cylinder radius="0.025" length="0.06"/>
       </geometry>
     </collision>
-    <xacro:sphere_inertia m="0.3" r="0.025"/>
+    <xacro:cylinder_inertia m="0.3" r="0.025" h="0.06"/>
+  </link>
+  <joint name="base_upper_joint" type="fixed">
+    <parent link="arm_base_link"/>
+    <child link="base_upper_link"/>
+    <origin xyz="0 0 0.01" rpy="0 -1.5707 0"/>
+  </joint>
+  <!-- ==================== UPPER-FORE ARM (elbow sphere) ==================== -->
+  <link name="upper_forearm_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+      <geometry>
+        <cylinder radius="0.0375" length="0.06"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+      <geometry>
+        <cylinder radius="0.025" length="0.06"/>
+      </geometry>
+    </collision>
+    <xacro:cylinder_inertia m="0.3" r="0.025" h="0.06"/>
   </link>
   <!-- Fixed cosmetic elbow sphere at end of upper arm -->
   <joint name="upper_forearm_joint" type="fixed">
@@ -150,8 +174,8 @@
       <geometry>
         <cylinder radius="0.022" length="${a3}"/>
       </geometry>
-      <material name="green">
-        <color rgba="0.035 0.85 0.035 1"/>
+      <material name="pale_blue">
+        <color rgba="0.6 0.8 1.0 1"/>
       </material>
     </visual>
     <collision>
@@ -173,21 +197,21 @@
   <!-- ==================== FOREARM-WRIST (wrist sphere) ==================== -->
   <link name="forearm_wrist_link">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
-        <sphere radius="0.0375"/>
+        <cylinder radius="0.0375" length="0.06"/>
       </geometry>
-      <material name="cyan">
-        <color rgba="0.035 0.85 0.85 1"/>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
-        <sphere radius="0.025"/>
+        <cylinder radius="0.025" length="0.06"/>
       </geometry>
     </collision>
-    <xacro:sphere_inertia m="0.3" r="0.025"/>
+    <xacro:cylinder_inertia m="0.3" r="0.025" h="0.06"/>
   </link>
   <!-- Fixed cosmetic wrist sphere at end of forearm -->
   <joint name="forearm_wrist_joint" type="fixed">
@@ -203,8 +227,8 @@
       <geometry>
         <cylinder radius="0.02" length="${d4}"/>
       </geometry>
-      <material name="red">
-        <color rgba="0.85 0.035 0.035 1"/>
+      <material name="pale_blue">
+        <color rgba="0.6 0.8 1.0 1"/>
       </material>
     </visual>
     <collision>
@@ -231,8 +255,8 @@
       <geometry>
         <cylinder radius="0.018" length="${d5}"/>
       </geometry>
-      <material name="cyan">
-        <color rgba="0.035 0.85 0.85 1"/>
+      <material name="pale_blue">
+        <color rgba="0.6 0.8 1.0 1"/>
       </material>
     </visual>
     <collision>
@@ -251,6 +275,30 @@
     <limit lower="-3.14" upper="3.14" effort="28" velocity="3.14"/>
     <axis xyz="0 0 1"/>
   </joint>
+  <!-- ==================== WRIST-GRIPPER (cosmetic joint) ==================== -->
+  <link name="wrist_gripper_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.025" length="0.04"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="0.04"/>
+      </geometry>
+    </collision>
+    <xacro:cylinder_inertia m="0.1" r="0.02" h="0.04"/>
+  </link>
+  <joint name="wrist_gripper_joint" type="fixed">
+    <parent link="wrist_link"/>
+    <child link="wrist_gripper_link"/>
+    <origin xyz="0 0 ${d4}" rpy="-1.5707 0 0"/>
+  </joint>
   <!-- ==================== GRIPPER BASE LINK (tool flange / wrist-3) ==================== -->
   <!-- d6 = 0.082 m -->
   <link name="gripper_base_link">
@@ -259,8 +307,8 @@
       <geometry>
         <box size="0.008 0.04 0.04"/>
       </geometry>
-      <material name="cyan">
-        <color rgba="0.035 0.85 0.85 1"/>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1"/>
       </material>
     </visual>
     <collision>
@@ -287,8 +335,8 @@
       <geometry>
         <box size="0.02 0.005 0.1"/>
       </geometry>
-      <material name="cyan">
-        <color rgba="0.035 0.85 0.85 1"/>
+      <material name="pale_blue">
+        <color rgba="0.6 0.8 1.0 1"/>
       </material>
     </visual>
     <collision>
@@ -313,8 +361,8 @@
       <geometry>
         <box size="0.02 0.005 0.1"/>
       </geometry>
-      <material name="cyan">
-        <color rgba="0.035 0.85 0.85 1"/>
+      <material name="pale_blue">
+        <color rgba="0.6 0.8 1.0 1"/>
       </material>
     </visual>
     <collision>
@@ -345,17 +393,23 @@
   </joint>
   <joint name="upper_arm_joint">
     <command_interface name="position"/>
-    <state_interface name="position"/>
+    <state_interface name="position">
+      <param name="initial_value">1.57</param>
+    </state_interface>
     <state_interface name="velocity"/>
   </joint>
   <joint name="forearm_joint">
     <command_interface name="position"/>
-    <state_interface name="position"/>
+    <state_interface name="position">
+      <param name="initial_value">-1.57</param>
+    </state_interface>
     <state_interface name="velocity"/>
   </joint>
   <joint name="wrist_joint">
     <command_interface name="position"/>
-    <state_interface name="position"/>
+    <state_interface name="position">
+      <param name="initial_value">-1.57</param>
+    </state_interface>
     <state_interface name="velocity"/>
   </joint>
   <joint name="gripper_baseTOwrist_joint">
