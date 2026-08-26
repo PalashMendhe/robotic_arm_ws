@@ -4,7 +4,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.actions import ExecuteProcess, TimerAction
-
+from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
 
 def generate_launch_description():
 
@@ -19,11 +19,15 @@ def generate_launch_description():
     )
 
     robot_description = xacro.process_file(urdf_path).toxml()
+    world_file = PathJoinSubstitution([
+        get_package_share_directory('robotic_4dof_arm'),
+        'worlds', 'warehouse.sdf'
+    ])
 
     return LaunchDescription([
         # Start Gazebo
         ExecuteProcess(
-            cmd=['gz', 'sim', '-r', 'empty.sdf'],
+            cmd=['gz', 'sim', '-r', world_file],
             output='screen'
         ),
         # Robot state publisher
@@ -42,7 +46,7 @@ def generate_launch_description():
             arguments=[
                 '-name', 'arm',
                 '-topic', 'robot_description',
-                '-x', '0', '-y', '0', '-z', '0.0'
+                '-x', '0.5', '-y', '0', '-z', '0.95'
             ],
             output='screen'
         ),
