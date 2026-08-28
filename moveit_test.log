@@ -1,0 +1,729 @@
+[INFO] [launch]: All log files can be found below /home/plsh/.ros/log/2026-08-28-22-23-12-126235-Jade-67844
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gz-1]: process started with pid [67866]
+[INFO] [robot_state_publisher-2]: process started with pid [67867]
+[INFO] [create-3]: process started with pid [67868]
+[INFO] [parameter_bridge-4]: process started with pid [67869]
+[INFO] [move_group-5]: process started with pid [67870]
+[robot_state_publisher-2] [INFO] [1787935992.849528110] [robot_state_publisher]: Robot initialized
+[move_group-5] [INFO] [1787935993.010330883] [move_group.moveit.moveit.ros.rdf_loader]: Loaded robot model in 0.006 seconds
+[move_group-5] [INFO] [1787935993.010556268] [move_group.moveit.moveit.core.robot_model]: Loading robot model 'arm'...
+[move_group-5] [INFO] [1787935993.010593008] [move_group.moveit.moveit.core.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[move_group-5] [INFO] [1787935993.018363943] [move_group.moveit.moveit.kinematics.kdl_kinematics_plugin]: Joint weights for group 'arm': 1 1 1 1 1 1
+[move_group-5] [INFO] [1787935993.050700308] [move_group.moveit.moveit.ros.moveit_cpp]: Listening to 'joint_states' for joint states
+[move_group-5] [INFO] [1787935993.055807766] [move_group.moveit.moveit.ros.current_state_monitor]: Listening to joint states on topic 'joint_states'
+[move_group-5] [INFO] [1787935993.071432423] [move_group.moveit.moveit.ros.planning_scene_monitor]: Listening to '/attached_collision_object' for attached collision objects
+[move_group-5] [INFO] [1787935993.073406669] [move_group.moveit.moveit.ros.planning_scene_monitor]: Publishing maintained planning scene on 'monitored_planning_scene'
+[move_group-5] [INFO] [1787935993.073607437] [move_group.moveit.moveit.ros.planning_scene_monitor]: Starting planning scene monitor
+[move_group-5] [INFO] [1787935993.074692746] [move_group.moveit.moveit.ros.planning_scene_monitor]: Listening to '/planning_scene'
+[move_group-5] [INFO] [1787935993.074727341] [move_group.moveit.moveit.ros.planning_scene_monitor]: Starting world geometry update monitor for collision objects, attached objects, octomap updates.
+[move_group-5] [INFO] [1787935993.075608333] [move_group.moveit.moveit.ros.planning_scene_monitor]: Listening to 'collision_object'
+[move_group-5] [INFO] [1787935993.076656712] [move_group.moveit.moveit.ros.planning_scene_monitor]: Listening to 'planning_scene_world' for planning scene world geometry
+[move_group-5] [WARN] [1787935993.077153690] [move_group.moveit.moveit.ros.occupancy_map_monitor]: Resolution not specified for Octomap. Assuming resolution = 0.1 instead
+[move_group-5] [ERROR] [1787935993.077193004] [move_group.moveit.moveit.ros.occupancy_map_monitor]: No 3D sensor plugin(s) defined for octomap updates
+[move_group-5] [INFO] [1787935993.108715523] [move_group.moveit.moveit.ros.planning_pipeline]: Successfully loaded planner 'OMPL'
+[move_group-5] [INFO] [1787935993.112243721] [move_group]: Try loading adapter 'default_planning_request_adapters/ResolveConstraintFrames'
+[move_group-5] [INFO] [1787935993.114420679] [move_group]: Loaded adapter 'default_planning_request_adapters/ResolveConstraintFrames'
+[move_group-5] [INFO] [1787935993.114473810] [move_group]: Try loading adapter 'default_planning_request_adapters/ValidateWorkspaceBounds'
+[move_group-5] [INFO] [1787935993.114733239] [move_group]: Loaded adapter 'default_planning_request_adapters/ValidateWorkspaceBounds'
+[move_group-5] [INFO] [1787935993.114753808] [move_group]: Try loading adapter 'default_planning_request_adapters/CheckStartStateBounds'
+[move_group-5] [INFO] [1787935993.114803352] [move_group]: Loaded adapter 'default_planning_request_adapters/CheckStartStateBounds'
+[move_group-5] [INFO] [1787935993.118515777] [move_group]: Try loading adapter 'default_planning_response_adapters/AddTimeOptimalParameterization'
+[move_group-5] [INFO] [1787935993.121681412] [move_group]: Loaded adapter 'default_planning_response_adapters/AddTimeOptimalParameterization'
+[move_group-5] [INFO] [1787935993.121711669] [move_group]: Try loading adapter 'default_planning_response_adapters/DisplayMotionPath'
+[move_group-5] [INFO] [1787935993.122814720] [move_group]: Loaded adapter 'default_planning_response_adapters/DisplayMotionPath'
+[move_group-5] [INFO] [1787935993.166817481] [move_group.moveit.moveit.plugins.simple_controller_manager]: Added FollowJointTrajectory controller for arm_controller
+[move_group-5] [INFO] [1787935993.171723911] [move_group.moveit.moveit.plugins.simple_controller_manager]: Added FollowJointTrajectory controller for gripper_controller
+[move_group-5] [INFO] [1787935993.172016864] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787935993.172073370] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787935993.173272012] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Trajectory execution is not managing controllers
+[move_group-5] [INFO] [1787935993.173310405] [move_group]: MoveGroup debug mode is ON
+[move_group-5] [INFO] [1787935993.216657278] [move_group.moveit.moveit.ros.move_group.executable]: 
+[move_group-5] 
+[move_group-5] ********************************************************
+[move_group-5] * MoveGroup using: 
+[move_group-5] *     - apply_planning_scene_service
+[move_group-5] *     - clear_octomap_service
+[move_group-5] *     - get_group_urdf
+[move_group-5] *     - load_geometry_from_file
+[move_group-5] *     - CartesianPathService
+[move_group-5] *     - execute_trajectory_action
+[move_group-5] *     - get_planning_scene_service
+[move_group-5] *     - kinematics_service
+[move_group-5] *     - move_action
+[move_group-5] *     - motion_plan_service
+[move_group-5] *     - query_planners_service
+[move_group-5] *     - state_validation_service
+[move_group-5] *     - save_geometry_to_file
+[move_group-5] ********************************************************
+[move_group-5] 
+[move_group-5] [INFO] [1787935993.216744072] [move_group.moveit.moveit.ros.move_group.context]: MoveGroup context using pipeline ompl
+[move_group-5] [INFO] [1787935993.216766173] [move_group.moveit.moveit.ros.move_group.context]: MoveGroup context initialization complete
+[move_group-5] [96mLoading 'move_group/ApplyPlanningSceneService'...[0m
+[move_group-5] [96mLoading 'move_group/ClearOctomapService'...[0m
+[move_group-5] [96mLoading 'move_group/GetUrdfService'...[0m
+[move_group-5] [96mLoading 'move_group/LoadGeometryFromFileService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupCartesianPathService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupExecuteTrajectoryAction'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupGetPlanningSceneService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupKinematicsService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupMoveAction'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupPlanService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupQueryPlannersService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupStateValidationService'...[0m
+[move_group-5] [96mLoading 'move_group/SaveGeometryToFileService'...[0m
+[move_group-5] 
+[move_group-5] [92mYou can start planning now![0m
+[move_group-5] 
+[create-3] [INFO] [1787935996.018396172] [ros_gz_sim]: Requesting list of world names.
+[parameter_bridge-4] [INFO] [1787935996.019361073] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[create-3] [INFO] [1787935996.226451189] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[move_group-5] [WARN] [1787935996.233175619] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935996.243514731] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[create-3] [INFO] [1787935996.249626094] [ros_gz_sim]: Entity creation successful.
+[move_group-5] [WARN] [1787935996.310620041] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935996.328879840] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[INFO] [create-3]: process has finished cleanly [pid 67868]
+[move_group-5] [WARN] [1787935996.411733259] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="table"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L93]: XML Attribute[name] in element[material] not defined in SDF.
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="target_box"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L146]: XML Attribute[name] in element[material] not defined in SDF.
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="obstacle"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L172]: XML Attribute[name] in element[material] not defined in SDF.
+[move_group-5] [WARN] [1787935996.418677484] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935996.458168250] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[gz-1] /opt/ros/lyrical/opt/gz_sim_vendor/libexec/gz/sim10/gz-sim-gui-client: symbol lookup error: /snap/core20/current/lib/x86_64-linux-gnu/libpthread.so.0: undefined symbol: __libc_pthread_init, version GLIBC_PRIVATE
+[move_group-5] [WARN] [1787935996.482222405] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935996.508220288] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935996.890275635] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935996.890750911] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935997.022419093] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935997.030854602] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935997.098515611] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935997.102927988] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935997.135468978] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935997.186241806] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935997.189244843] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935997.219611130] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935997.231010212] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935997.407149498] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[INFO] [spawner-6]: process started with pid [68038]
+[gz-1] (2026-08-28 22:23:18.018) [error] [SimulationRunner.cc:274] Another world of the same name is running
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="table"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L93]: XML Attribute[name] in element[material] not defined in SDF.
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="target_box"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L146]: XML Attribute[name] in element[material] not defined in SDF.
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="obstacle"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L172]: XML Attribute[name] in element[material] not defined in SDF.
+[INFO] [gz-1]: process has finished cleanly [pid 67866]
+[move_group-5] [WARN] [1787935998.340640864] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935998.447066708] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935998.452936686] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935998.453189223] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935998.470927498] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935998.526919846] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935998.535003120] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935998.552490171] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935998.579231707] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935998.598728241] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935999.037165390] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935999.075825178] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787935999.335507706] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[spawner-6] [INFO] [1787935999.379750290] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-6] [WARN] [1787935999.631990392] [spawner_joint_state_broadcaster]: Controller already loaded, skipping load_controller
+[spawner-6] [ERROR] [1787935999.635190611] [spawner_joint_state_broadcaster]: Failed to activate controller : joint_state_broadcaster
+[INFO] [spawner-7]: process started with pid [68083]
+[INFO] [spawner-8]: process started with pid [68084]
+[ERROR] [spawner-6]: process has died [pid 68038, exit code 1, cmd '/opt/ros/lyrical/lib/controller_manager/spawner joint_state_broadcaster --param-file /home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/config/controllers.yaml --ros-args'].
+[move_group-5] [WARN] [1787935999.890929576] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.022235194] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.177162119] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.225015707] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.268340249] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.269264393] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.338347685] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[spawner-8] [INFO] [1787936000.349296758] [spawner_gripper_controller]: waiting for service /controller_manager/list_controllers to become available...
+[move_group-5] [WARN] [1787936000.470197519] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.597864339] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.655189181] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.756334411] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.790405359] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.796575893] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.799772676] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936000.840151979] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936001.037649893] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936001.056042934] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936001.154958335] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936001.302138090] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.253476606] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[spawner-8] [WARN] [1787936002.353709864] [spawner_gripper_controller]: Controller already loaded, skipping load_controller
+[spawner-8] [ERROR] [1787936002.358364869] [spawner_gripper_controller]: Failed to activate controller : gripper_controller
+[move_group-5] [WARN] [1787936002.362986090] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.381583427] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.425691176] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.437543243] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.517163731] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.519657367] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.816751437] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[spawner-7] [WARN] [1787936002.864734179] [spawner_arm_controller]: Controller already loaded, skipping load_controller
+[spawner-7] [ERROR] [1787936002.873313249] [spawner_arm_controller]: Failed to activate controller : arm_controller
+[move_group-5] [WARN] [1787936002.915310385] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.921266295] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.969167002] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.986110528] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.990004967] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936002.999201373] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936003.034772913] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[ERROR] [spawner-8]: process has died [pid 68084, exit code 1, cmd '/opt/ros/lyrical/lib/controller_manager/spawner gripper_controller --param-file /home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/config/controllers.yaml --ros-args'].
+[ERROR] [spawner-7]: process has died [pid 68083, exit code 1, cmd '/opt/ros/lyrical/lib/controller_manager/spawner arm_controller --param-file /home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/config/controllers.yaml --ros-args'].
+[move_group-5] [WARN] [1787936003.300589777] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936003.317995043] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936003.472674050] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936003.626416911] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936004.006267317] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936004.039536862] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936004.094965907] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936004.108003962] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936004.273568432] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936004.307417170] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936005.072331641] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936005.280765403] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936005.335539071] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936005.764993408] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936005.788422523] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936005.797590755] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936005.835819209] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936005.887337944] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936005.965666244] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936005.991187978] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.002605034] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.012682802] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.185167602] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.210533963] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.276163358] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.280299643] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.285660831] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.291100276] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.348228307] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.354620500] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.415669541] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.429113211] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.595451461] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.610304602] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.630159161] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.674585101] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.708340253] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936006.725224336] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936007.023130829] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936007.192871069] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936007.527196381] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [INFO] [1787936007.584618176] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787936007.585163445] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787936007.596394470] [move_group.moveit.moveit.ros.move_group.move_action]: Planning request received for MoveGroup action. Forwarding to planning pipeline.
+[move_group-5] [INFO] [1787936007.597182688] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787936007.597266025] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787936007.597278789] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787936007.597310890] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [ERROR] [1787936007.597343341] [move_group.moveit.moveit.core.conversions]: Found empty JointState message
+[move_group-5] [ERROR] [1787936007.597866067] [move_group.moveit.moveit.core.conversions]: Found empty JointState message
+[move_group-5] [INFO] [1787936007.598415835] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787936007.598703418] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [WARN] [1787936007.599698255] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [INFO] [1787936007.613697664] [move_group]: Calling PlanningResponseAdapter 'AddTimeOptimalParameterization'
+[move_group-5] [ERROR] [1787936007.613881421] [move_group.moveit.moveit.core.time_optimal_trajectory_generation]: No acceleration limit was defined for joint arm_base_joint! You have to define acceleration limits in the URDF or joint_limits.yaml
+[move_group-5] [ERROR] [1787936007.614000626] [move_group.moveit.moveit.ros.add_time_optimal_parameterization]: Response adapter 'AddTimeOptimalParameterization' failed to generate a trajectory.
+[move_group-5] [ERROR] [1787936007.614052474] [move_group]: PlanningResponseAdapter 'AddTimeOptimalParameterization' failed with error code FAILURE
+[move_group-5] [ERROR] [1787936007.614079255] [move_group.moveit.moveit.ros.move_group.move_action]: Generating a plan with planning pipeline failed.
+[move_group-5] [INFO] [1787936007.614161580] [move_group.moveit.moveit.ros.move_group.move_action]: FAILURE
+[move_group-5] [WARN] [1787936007.614422242] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[move_group-5] [INFO] [1787936007.619987515] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787936007.620208421] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [WARN] [1787936007.629444592] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [INFO] [1787936007.630162286] [move_group.moveit.moveit.ros.move_group.move_action]: Planning request received for MoveGroup action. Forwarding to planning pipeline.
+[move_group-5] [INFO] [1787936007.630471059] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787936007.630521254] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787936007.630532585] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787936007.630559596] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [ERROR] [1787936007.630591496] [move_group.moveit.moveit.core.conversions]: Found empty JointState message
+[move_group-5] [ERROR] [1787936007.631474983] [move_group.moveit.moveit.core.conversions]: Found empty JointState message
+[move_group-5] [INFO] [1787936007.632684757] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787936007.632829269] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [WARN] [1787936007.643372727] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [INFO] [1787936007.646584388] [move_group]: Calling PlanningResponseAdapter 'AddTimeOptimalParameterization'
+[move_group-5] [ERROR] [1787936007.646668617] [move_group.moveit.moveit.core.time_optimal_trajectory_generation]: No acceleration limit was defined for joint arm_base_joint! You have to define acceleration limits in the URDF or joint_limits.yaml
+[move_group-5] [ERROR] [1787936007.646717890] [move_group.moveit.moveit.ros.add_time_optimal_parameterization]: Response adapter 'AddTimeOptimalParameterization' failed to generate a trajectory.
+[move_group-5] [ERROR] [1787936007.646756933] [move_group]: PlanningResponseAdapter 'AddTimeOptimalParameterization' failed with error code FAILURE
+[move_group-5] [ERROR] [1787936007.646779305] [move_group.moveit.moveit.ros.move_group.move_action]: Generating a plan with planning pipeline failed.
+[move_group-5] [INFO] [1787936007.646819411] [move_group.moveit.moveit.ros.move_group.move_action]: FAILURE
+[move_group-5] [WARN] [1787936007.648062327] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[move_group-5] [INFO] [1787936007.651826290] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787936007.652067605] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787936007.665623197] [move_group.moveit.moveit.ros.move_group.move_action]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-5] [WARN] [1787936007.665740759] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as start state in the motion planning request
+[move_group-5] [WARN] [1787936007.665766979] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-5] [INFO] [1787936007.665797987] [move_group.moveit.moveit.ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-5] [INFO] [1787936007.666152406] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787936007.666224332] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787936007.666235954] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787936007.666257134] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [INFO] [1787936007.666813323] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787936007.667002420] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [INFO] [1787936007.684081461] [move_group]: Calling PlanningResponseAdapter 'AddTimeOptimalParameterization'
+[move_group-5] [ERROR] [1787936007.684320673] [move_group.moveit.moveit.core.time_optimal_trajectory_generation]: No acceleration limit was defined for joint arm_base_joint! You have to define acceleration limits in the URDF or joint_limits.yaml
+[move_group-5] [ERROR] [1787936007.684396646] [move_group.moveit.moveit.ros.add_time_optimal_parameterization]: Response adapter 'AddTimeOptimalParameterization' failed to generate a trajectory.
+[move_group-5] [ERROR] [1787936007.684452712] [move_group]: PlanningResponseAdapter 'AddTimeOptimalParameterization' failed with error code FAILURE
+[move_group-5] [INFO] [1787936007.684515911] [move_group.moveit.moveit.ros.move_group.move_action]: FAILURE
+[move_group-5] [WARN] [1787936007.685857683] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[move_group-5] [INFO] [1787936007.691309903] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787936007.691579532] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787936007.708244682] [move_group.moveit.moveit.ros.move_group.move_action]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-5] [WARN] [1787936007.709475835] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as start state in the motion planning request
+[move_group-5] [WARN] [1787936007.709516412] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-5] [INFO] [1787936007.709534285] [move_group.moveit.moveit.ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-5] [INFO] [1787936007.710335638] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787936007.710994010] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787936007.711005983] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787936007.711032282] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [INFO] [1787936007.711542495] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787936007.711756780] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [INFO] [1787936007.714424594] [move_group]: Calling PlanningResponseAdapter 'AddTimeOptimalParameterization'
+[move_group-5] [ERROR] [1787936007.714493725] [move_group.moveit.moveit.core.time_optimal_trajectory_generation]: No acceleration limit was defined for joint arm_base_joint! You have to define acceleration limits in the URDF or joint_limits.yaml
+[move_group-5] [ERROR] [1787936007.714559048] [move_group.moveit.moveit.ros.add_time_optimal_parameterization]: Response adapter 'AddTimeOptimalParameterization' failed to generate a trajectory.
+[move_group-5] [ERROR] [1787936007.714611557] [move_group]: PlanningResponseAdapter 'AddTimeOptimalParameterization' failed with error code FAILURE
+[move_group-5] [INFO] [1787936007.714670408] [move_group.moveit.moveit.ros.move_group.move_action]: FAILURE
+[move_group-5] [WARN] [1787936007.715809247] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[move_group-5] [WARN] [1787936007.812290395] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936007.813856139] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936007.821057630] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936007.828364770] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936007.862957182] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936009.262317806] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936009.392486728] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936009.443327204] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936009.529333112] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936009.529591910] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936009.603425027] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936009.659817119] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936009.773613363] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936009.942675103] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936010.794135581] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936010.893186117] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936011.478409509] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936011.862195602] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936011.926405107] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936012.023218220] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936012.629237257] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936012.650034335] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936012.775150922] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936012.939242653] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936013.061160784] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936013.476878037] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936013.740344606] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936013.806083386] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936014.023162163] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936014.156834326] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936014.260644915] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936014.813181080] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936014.876054323] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936015.023930482] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936017.063135217] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936017.340580616] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936017.413912046] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936017.906207145] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936017.922485646] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936019.050874608] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936019.321684925] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936019.628821620] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936020.069464612] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936020.272824011] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936020.317863985] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936020.532720129] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936021.359189799] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936022.542129773] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936023.468614979] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936023.503969773] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936023.601264249] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936024.234487441] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936024.291969020] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936025.094262043] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936025.730192878] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936025.865491564] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936025.867657744] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936025.872608521] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936025.882799549] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936025.898297391] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936025.993519034] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936025.995499044] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936026.068133329] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936026.790200591] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936027.259378216] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936028.305347542] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936028.936398603] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936029.018359064] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936030.266807579] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936030.817653108] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936031.025812642] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936031.936247510] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936032.073260258] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936033.918457262] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936034.113974085] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936034.126766137] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936034.620673755] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936035.901997147] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936037.903175385] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936038.630704643] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936040.768241724] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936040.850979723] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936040.851188084] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936043.079150008] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936043.865500646] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936043.893351007] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936045.327290677] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936045.327411573] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936046.851132341] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936046.909513205] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936046.919852090] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936046.929404611] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936046.933381313] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936047.571637005] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936048.489923166] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936048.507166470] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936048.908299711] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936049.154879895] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.250469868] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.257906204] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.263515385] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.293107921] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.303233906] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.537497279] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.809349833] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.903960610] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.937500433] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.945317482] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.946569819] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936050.949867949] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.488228681] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.528399510] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.574222541] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.638690532] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.640131333] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.709709991] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.797956753] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.809199321] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.860943548] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.870042529] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936051.994072177] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936052.008966649] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936052.025379907] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936052.042664788] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936052.091567781] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936052.170703789] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936052.193268766] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936052.197121205] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936052.912057655] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936053.640401319] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936053.664666010] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936053.671287409] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936053.675888250] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936053.687944884] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936054.298340988] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936054.533986711] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936054.539198077] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936054.632346474] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936055.311570430] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936055.365524158] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936055.475871565] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936055.546297331] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936055.909738189] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936056.036422461] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936056.040686852] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936056.061492431] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936056.201664600] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936056.214190413] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936056.240718316] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936056.271509918] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936056.317230106] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936056.330006228] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936056.479468186] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936057.030179362] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936058.632824040] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936059.383313796] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936059.823132263] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936062.030110364] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936062.076265657] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936062.915449974] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936063.030282376] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936063.091111889] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936063.411555180] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936063.524217676] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936063.568346452] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936063.708806410] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936063.714472308] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936063.779121348] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936064.030474867] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936064.177758973] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936064.216776260] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936064.248623030] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936064.255048972] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936064.295335448] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936064.297611153] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936064.647417048] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936066.498218956] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936069.214438611] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936069.220468591] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936071.527217400] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936072.922304301] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936073.031362583] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936077.645073510] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936078.107356635] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936078.635192714] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936079.107774718] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936082.489868211] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936083.200295991] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936084.110982320] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936084.278955026] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936084.375522270] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936085.231164358] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936086.157013479] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936086.255182361] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936086.693073071] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936087.112384293] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936087.238044156] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936087.636148220] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936087.657321995] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936088.055680531] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936088.192322441] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936088.592598086] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936088.636023467] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936089.033793641] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936090.991979789] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936091.007024877] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936091.258255258] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936091.264193932] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936091.636230106] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936091.890414270] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936091.916316343] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936091.925802892] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936091.926571960] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936092.233475899] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936092.260789451] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936092.324076972] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936092.351461616] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936092.711163394] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936092.899352842] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936095.230708146] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936097.675241525] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936098.034920219] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936099.079348831] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936099.307216714] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936099.309221896] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936099.544414737] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936100.142587821] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936101.500658970] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936102.035330605] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936104.323993750] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936106.125483772] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936106.322662236] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936106.523797976] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936107.256921379] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936110.142574351] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936111.214808609] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936112.664779332] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936112.822885486] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936112.836793093] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936113.077656650] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936113.324222392] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936113.638737469] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936113.638848505] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936114.146695586] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936114.280185324] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936114.638462797] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936116.958172484] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936118.784597242] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936118.853253700] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936118.917081123] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936119.036897009] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936120.892298927] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936121.674367167] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936121.886549012] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936122.440776219] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936122.935498335] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936123.112241826] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936123.116154439] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936123.121029639] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936123.160289948] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936123.208101872] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936123.226079183] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936123.227496134] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936123.362720993] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936124.323487722] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936124.413298308] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936124.488728710] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936124.547186907] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936124.620072355] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936124.644686065] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936124.793719267] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936124.843214896] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936125.010042960] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936125.029972155] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936125.324615484] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936125.454943764] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936125.557651691] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936125.970132112] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936126.023121176] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936126.363810971] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936126.772000016] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936126.780446846] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936128.156263807] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936128.194895990] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936128.640189482] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936129.095427865] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936129.988590000] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936129.991151084] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936130.039936184] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936130.621120592] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936130.622898131] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936130.640611653] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936130.640735804] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.031451292] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.062604442] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.084324120] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.084952677] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.139877584] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.272031082] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.276859786] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.539141541] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.559249648] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.658505959] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.671155099] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.707902824] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.721201992] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.733945177] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.739593492] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.772668940] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936131.774549511] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936132.674924926] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936132.750928352] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936133.470593272] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936133.716073429] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936134.526688540] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936134.551629699] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936135.549979895] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936135.644567889] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936136.828209153] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936136.832766823] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936136.918395316] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936137.195289087] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936139.442643690] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936140.079054024] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936140.324982143] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936140.385576825] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936142.470371640] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936142.876832087] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936145.042811994] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936148.128640244] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936148.422116707] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936149.982867486] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936150.032878006] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936150.071222347] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936155.921311127] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936156.647188970] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936157.488869952] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936160.071309227] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936160.918628814] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936161.959436722] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936162.160205333] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936162.495286665] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936162.647809791] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936163.044621324] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936163.376956961] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936165.044956346] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936166.045784227] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936167.079803105] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936167.648281993] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936171.045337503] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936174.045690934] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936174.056560726] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936174.510009337] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936176.946769928] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936176.960064641] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936176.960590076] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936177.649686008] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936177.929729660] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936177.950609689] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936178.909002569] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936178.973281299] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936179.170410126] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936179.591120069] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936180.661599362] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936181.325650083] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936182.046460792] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936182.925293381] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936183.991561639] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936184.015213152] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936184.021986402] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936184.026421232] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936185.425655125] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936187.142989547] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936188.143771423] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936188.934256786] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936189.047438471] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936189.394550550] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936190.430392882] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936191.650263789] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936193.095497490] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936194.182591346] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936195.047861946] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936197.414889605] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936197.418345479] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936197.434190855] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936201.596474756] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936202.188000974] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936203.048784919] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936203.329173841] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936204.689446229] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936204.699150077] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936205.048780560] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936206.049176149] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936206.084107405] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936207.623149419] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936210.768779150] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936211.193380767] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936211.911069481] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936211.920152427] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936211.923319144] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936212.081253583] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936212.194157964] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936214.963538794] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936215.387634305] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936218.653902510] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936219.209555867] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936219.210922430] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936220.919447025] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936221.330984931] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936221.963550555] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936222.347201246] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936223.508577326] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936223.581012596] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936224.202099216] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936225.964226607] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936226.051273779] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936226.051514475] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936226.922492257] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936226.937879095] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936227.646058460] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936229.920786365] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936230.011160703] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936230.345065476] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936232.828744586] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936232.919669575] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936233.081681484] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936233.229157133] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936233.330286213] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936233.666234343] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936233.884751939] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936233.964800489] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936234.315118532] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936235.079750535] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936235.124621018] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936235.133948054] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [WARN] [1787936235.138847244] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-5] [INFO] [1787936235.153463624] [rclcpp]: signal_handler(signum=15)
+[move_group-5] [INFO] [1787936235.207410508] [move_group.moveit.moveit.ros.moveit_cpp]: Deleting MoveItCpp
+[move_group-5] Stack trace (most recent call last):
+[move_group-5] #15   Object "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2", at 0xffffffffffffffff, in 

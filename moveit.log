@@ -1,0 +1,559 @@
+[INFO] [launch]: All log files can be found below /home/plsh/.ros/log/2026-08-29-02-16-05-683826-Jade-124883
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gz-1]: process started with pid [124897]
+[INFO] [robot_state_publisher-2]: process started with pid [124898]
+[INFO] [create-3]: process started with pid [124899]
+[INFO] [parameter_bridge-4]: process started with pid [124900]
+[INFO] [move_group-5]: process started with pid [124901]
+[robot_state_publisher-2] [INFO] [1787949965.910674576] [robot_state_publisher]: Robot initialized
+[create-3] [INFO] [1787949965.925096409] [ros_gz_sim]: Requesting list of world names.
+[parameter_bridge-4] [INFO] [1787949965.940243666] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[move_group-5] [INFO] [1787949965.951258153] [move_group.moveit.moveit.ros.rdf_loader]: Loaded robot model in 0 seconds
+[move_group-5] [INFO] [1787949965.951358431] [move_group.moveit.moveit.core.robot_model]: Loading robot model 'arm'...
+[move_group-5] [INFO] [1787949965.951371546] [move_group.moveit.moveit.core.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[move_group-5] [WARN] [1787949965.951424526] [move_group.moveit.moveit.core.robot_model]: Link base_upper_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[move_group-5] [WARN] [1787949965.951438111] [move_group.moveit.moveit.core.robot_model]: Link forearm_wrist_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[move_group-5] [WARN] [1787949965.951454813] [move_group.moveit.moveit.core.robot_model]: Link wrist_gripper_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[move_group-5] [WARN] [1787949965.951462637] [move_group.moveit.moveit.core.robot_model]: Link upper_forearm_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[move_group-5] [INFO] [1787949965.953723017] [move_group.moveit.moveit.kinematics.kdl_kinematics_plugin]: Joint weights for group 'arm': 1 1 1 1 1 1
+[move_group-5] [INFO] [1787949965.961982605] [move_group.moveit.moveit.ros.moveit_cpp]: Listening to 'joint_states' for joint states
+[move_group-5] [INFO] [1787949965.963255979] [move_group.moveit.moveit.ros.current_state_monitor]: Listening to joint states on topic 'joint_states'
+[move_group-5] [INFO] [1787949965.969206696] [move_group.moveit.moveit.ros.planning_scene_monitor]: Listening to '/attached_collision_object' for attached collision objects
+[move_group-5] [INFO] [1787949965.970439995] [move_group.moveit.moveit.ros.planning_scene_monitor]: Publishing maintained planning scene on 'monitored_planning_scene'
+[move_group-5] [INFO] [1787949965.970574818] [move_group.moveit.moveit.ros.planning_scene_monitor]: Starting planning scene monitor
+[move_group-5] [INFO] [1787949965.970925437] [move_group.moveit.moveit.ros.planning_scene_monitor]: Listening to '/planning_scene'
+[move_group-5] [INFO] [1787949965.970942469] [move_group.moveit.moveit.ros.planning_scene_monitor]: Starting world geometry update monitor for collision objects, attached objects, octomap updates.
+[move_group-5] [INFO] [1787949965.971263182] [move_group.moveit.moveit.ros.planning_scene_monitor]: Listening to 'collision_object'
+[move_group-5] [INFO] [1787949965.971614162] [move_group.moveit.moveit.ros.planning_scene_monitor]: Listening to 'planning_scene_world' for planning scene world geometry
+[move_group-5] [WARN] [1787949965.971872297] [move_group.moveit.moveit.ros.occupancy_map_monitor]: Resolution not specified for Octomap. Assuming resolution = 0.1 instead
+[move_group-5] [ERROR] [1787949965.971891313] [move_group.moveit.moveit.ros.occupancy_map_monitor]: No 3D sensor plugin(s) defined for octomap updates
+[move_group-5] [INFO] [1787949965.983401572] [move_group.moveit.moveit.ros.planning_pipeline]: Successfully loaded planner 'OMPL'
+[move_group-5] [INFO] [1787949965.984650520] [move_group]: Try loading adapter 'default_planning_request_adapters/ResolveConstraintFrames'
+[move_group-5] [INFO] [1787949965.985356858] [move_group]: Loaded adapter 'default_planning_request_adapters/ResolveConstraintFrames'
+[move_group-5] [INFO] [1787949965.985368921] [move_group]: Try loading adapter 'default_planning_request_adapters/ValidateWorkspaceBounds'
+[move_group-5] [INFO] [1787949965.985444884] [move_group]: Loaded adapter 'default_planning_request_adapters/ValidateWorkspaceBounds'
+[move_group-5] [INFO] [1787949965.985450354] [move_group]: Try loading adapter 'default_planning_request_adapters/CheckStartStateBounds'
+[move_group-5] [INFO] [1787949965.985465292] [move_group]: Loaded adapter 'default_planning_request_adapters/CheckStartStateBounds'
+[move_group-5] [INFO] [1787949965.986632587] [move_group]: Try loading adapter 'default_planning_response_adapters/AddTimeOptimalParameterization'
+[move_group-5] [INFO] [1787949965.987977485] [move_group]: Loaded adapter 'default_planning_response_adapters/AddTimeOptimalParameterization'
+[move_group-5] [INFO] [1787949965.987987784] [move_group]: Try loading adapter 'default_planning_response_adapters/DisplayMotionPath'
+[move_group-5] [INFO] [1787949965.988488756] [move_group]: Loaded adapter 'default_planning_response_adapters/DisplayMotionPath'
+[move_group-5] [INFO] [1787949966.003020806] [move_group.moveit.moveit.plugins.simple_controller_manager]: Added FollowJointTrajectory controller for arm_controller
+[move_group-5] [INFO] [1787949966.004708569] [move_group.moveit.moveit.plugins.simple_controller_manager]: Added FollowJointTrajectory controller for gripper_controller
+[move_group-5] [INFO] [1787949966.004877677] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949966.004912703] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949966.005380643] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Trajectory execution is not managing controllers
+[move_group-5] [INFO] [1787949966.005402644] [move_group]: MoveGroup debug mode is ON
+[move_group-5] [INFO] [1787949966.023339685] [move_group.moveit.moveit.ros.move_group.executable]: 
+[move_group-5] 
+[move_group-5] ********************************************************
+[move_group-5] * MoveGroup using: 
+[move_group-5] *     - apply_planning_scene_service
+[move_group-5] *     - clear_octomap_service
+[move_group-5] *     - get_group_urdf
+[move_group-5] *     - load_geometry_from_file
+[move_group-5] *     - CartesianPathService
+[move_group-5] *     - execute_trajectory_action
+[move_group-5] *     - get_planning_scene_service
+[move_group-5] *     - kinematics_service
+[move_group-5] *     - move_action
+[move_group-5] *     - motion_plan_service
+[move_group-5] *     - query_planners_service
+[move_group-5] *     - state_validation_service
+[move_group-5] *     - save_geometry_to_file
+[move_group-5] ********************************************************
+[move_group-5] 
+[move_group-5] [INFO] [1787949966.023420868] [move_group.moveit.moveit.ros.move_group.context]: MoveGroup context using pipeline ompl
+[move_group-5] [INFO] [1787949966.023433482] [move_group.moveit.moveit.ros.move_group.context]: MoveGroup context initialization complete
+[move_group-5] [96mLoading 'move_group/ApplyPlanningSceneService'...[0m
+[move_group-5] [96mLoading 'move_group/ClearOctomapService'...[0m
+[move_group-5] [96mLoading 'move_group/GetUrdfService'...[0m
+[move_group-5] [96mLoading 'move_group/LoadGeometryFromFileService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupCartesianPathService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupExecuteTrajectoryAction'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupGetPlanningSceneService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupKinematicsService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupMoveAction'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupPlanService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupQueryPlannersService'...[0m
+[move_group-5] [96mLoading 'move_group/MoveGroupStateValidationService'...[0m
+[move_group-5] [96mLoading 'move_group/SaveGeometryToFileService'...[0m
+[move_group-5] 
+[move_group-5] [92mYou can start planning now![0m
+[move_group-5] 
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="table"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L93]: XML Attribute[name] in element[material] not defined in SDF.
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="target_box"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L146]: XML Attribute[name] in element[material] not defined in SDF.
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="obstacle"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L172]: XML Attribute[name] in element[material] not defined in SDF.
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="table"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L93]: XML Attribute[name] in element[material] not defined in SDF.
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="target_box"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L146]: XML Attribute[name] in element[material] not defined in SDF.
+[gz-1] [1;33mWarning [Utils.cc:132][0m [/sdf/world[@name="warehouse"]/model[@name="obstacle"]/link[@name="link"]/visual[@name="visual"]/material[@name="grey"][@name="grey"]:/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/worlds/warehouse.sdf:L172]: XML Attribute[name] in element[material] not defined in SDF.
+[create-3] [INFO] [1787949968.257499131] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[create-3] [INFO] [1787949968.459263736] [ros_gz_sim]: Entity creation successful.
+[INFO] [create-3]: process has finished cleanly [pid 124899]
+[gz-1] [INFO] [1787949968.606336010] [gz_ros_control]: Loading controller_manager
+[gz-1] [INFO] [1787949968.620999587] [controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gz-1] [WARN] [1787949968.621442680] [controller_manager]: The resource manager is not yet initialized, will wait for the robot description to initialize it..
+[gz-1] [INFO] [1787949968.629177412] [controller_manager]: Subscribing to '/robot_description' topic for robot description.
+[gz-1] [WARN] [1787949968.629481744] [gz_ros_control]: Waiting RM to load and initialize hardware...
+[gz-1] [INFO] [1787949968.808378918] [controller_manager]: Received robot description from topic.
+[gz-1] [INFO] [1787949968.808461644] [controller_manager]: Enforcing command limits is enabled...
+[gz-1] [INFO] [1787949968.810778179] [gz_ros_control]: Using JointLimiter for joint 'right_prong_joint' in hardware 'arm_system' : '  has position limits: true [0, 0.08]
+[gz-1]   has velocity limits: true [1]
+[gz-1]   has acceleration limits: false [nan]
+[gz-1]   has deceleration limits: false [nan]
+[gz-1]   has jerk limits: false [nan]
+[gz-1]   has effort limits: true [10]
+[gz-1]   angle wraparound: false'
+[gz-1] [INFO] [1787949968.810800010] [gz_ros_control]: Creating JointSaturationLimiter for joint 'right_prong_joint' in hardware 'arm_system'
+[gz-1] [INFO] [1787949968.810823915] [gz_ros_control]: Using JointLimiter for joint 'gripper_baseTOwrist_joint' in hardware 'arm_system' : '  has position limits: true [-3.14, 3.14]
+[gz-1]   has velocity limits: true [3.14]
+[gz-1]   has acceleration limits: false [nan]
+[gz-1]   has deceleration limits: false [nan]
+[gz-1]   has jerk limits: false [nan]
+[gz-1]   has effort limits: true [28]
+[gz-1]   angle wraparound: false'
+[gz-1] [INFO] [1787949968.810830337] [gz_ros_control]: Creating JointSaturationLimiter for joint 'gripper_baseTOwrist_joint' in hardware 'arm_system'
+[gz-1] [INFO] [1787949968.810844934] [gz_ros_control]: Using JointLimiter for joint 'wrist_joint' in hardware 'arm_system' : '  has position limits: true [-3.14, 3.14]
+[gz-1]   has velocity limits: true [3.14]
+[gz-1]   has acceleration limits: false [nan]
+[gz-1]   has deceleration limits: false [nan]
+[gz-1]   has jerk limits: false [nan]
+[gz-1]   has effort limits: true [28]
+[gz-1]   angle wraparound: false'
+[gz-1] [INFO] [1787949968.810851066] [gz_ros_control]: Creating JointSaturationLimiter for joint 'wrist_joint' in hardware 'arm_system'
+[gz-1] [INFO] [1787949968.810857929] [gz_ros_control]: Using JointLimiter for joint 'gripper_base_joint' in hardware 'arm_system' : '  has position limits: true [-3.14, 3.14]
+[gz-1]   has velocity limits: true [3.14]
+[gz-1]   has acceleration limits: false [nan]
+[gz-1]   has deceleration limits: false [nan]
+[gz-1]   has jerk limits: false [nan]
+[gz-1]   has effort limits: true [28]
+[gz-1]   angle wraparound: false'
+[gz-1] [INFO] [1787949968.810863159] [gz_ros_control]: Creating JointSaturationLimiter for joint 'gripper_base_joint' in hardware 'arm_system'
+[gz-1] [INFO] [1787949968.810869981] [gz_ros_control]: Using JointLimiter for joint 'forearm_joint' in hardware 'arm_system' : '  has position limits: true [-3.14, 3.14]
+[gz-1]   has velocity limits: true [3.14]
+[gz-1]   has acceleration limits: false [nan]
+[gz-1]   has deceleration limits: false [nan]
+[gz-1]   has jerk limits: false [nan]
+[gz-1]   has effort limits: true [150]
+[gz-1]   angle wraparound: false'
+[gz-1] [INFO] [1787949968.810875131] [gz_ros_control]: Creating JointSaturationLimiter for joint 'forearm_joint' in hardware 'arm_system'
+[gz-1] [INFO] [1787949968.810882094] [gz_ros_control]: Using JointLimiter for joint 'left_prong_joint' in hardware 'arm_system' : '  has position limits: true [-0.08, 0]
+[gz-1]   has velocity limits: true [1]
+[gz-1]   has acceleration limits: false [nan]
+[gz-1]   has deceleration limits: false [nan]
+[gz-1]   has jerk limits: false [nan]
+[gz-1]   has effort limits: true [10]
+[gz-1]   angle wraparound: false'
+[gz-1] [INFO] [1787949968.810887474] [gz_ros_control]: Creating JointSaturationLimiter for joint 'left_prong_joint' in hardware 'arm_system'
+[gz-1] [INFO] [1787949968.810894297] [gz_ros_control]: Using JointLimiter for joint 'upper_arm_joint' in hardware 'arm_system' : '  has position limits: true [-3.14, 3.14]
+[gz-1]   has velocity limits: true [3.14]
+[gz-1]   has acceleration limits: false [nan]
+[gz-1]   has deceleration limits: false [nan]
+[gz-1]   has jerk limits: false [nan]
+[gz-1]   has effort limits: true [150]
+[gz-1]   angle wraparound: false'
+[gz-1] [INFO] [1787949968.810920506] [gz_ros_control]: Creating JointSaturationLimiter for joint 'upper_arm_joint' in hardware 'arm_system'
+[gz-1] [INFO] [1787949968.810928532] [gz_ros_control]: Using JointLimiter for joint 'arm_base_joint' in hardware 'arm_system' : '  has position limits: true [-3.14, 3.14]
+[gz-1]   has velocity limits: true [3.14]
+[gz-1]   has acceleration limits: false [nan]
+[gz-1]   has deceleration limits: false [nan]
+[gz-1]   has jerk limits: false [nan]
+[gz-1]   has effort limits: true [150]
+[gz-1]   angle wraparound: false'
+[gz-1] [INFO] [1787949968.810934743] [gz_ros_control]: Creating JointSaturationLimiter for joint 'arm_base_joint' in hardware 'arm_system'
+[gz-1] [INFO] [1787949968.814156170] [gz_ros_control]: The position_proportional_gain has been set to: 0.1
+[gz-1] [INFO] [1787949968.814199942] [gz_ros_control]: Loading joint: arm_base_joint
+[gz-1] [INFO] [1787949968.814207937] [gz_ros_control]: 	State:
+[gz-1] [INFO] [1787949968.814214399] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814220841] [gz_ros_control]: 		 velocity
+[gz-1] [INFO] [1787949968.814224949] [gz_ros_control]: 	Command:
+[gz-1] [INFO] [1787949968.814229167] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814241119] [gz_ros_control]: Loading joint: upper_arm_joint
+[gz-1] [INFO] [1787949968.814245858] [gz_ros_control]: 	State:
+[gz-1] [INFO] [1787949968.814249635] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814267840] [gz_ros_control]: 			 found initial value: 1.570000
+[gz-1] [INFO] [1787949968.814273570] [gz_ros_control]: 		 velocity
+[gz-1] [INFO] [1787949968.814277658] [gz_ros_control]: 	Command:
+[gz-1] [INFO] [1787949968.814281395] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814290352] [gz_ros_control]: Loading joint: forearm_joint
+[gz-1] [INFO] [1787949968.814294650] [gz_ros_control]: 	State:
+[gz-1] [INFO] [1787949968.814302074] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814309047] [gz_ros_control]: 			 found initial value: -1.570000
+[gz-1] [INFO] [1787949968.814318164] [gz_ros_control]: 		 velocity
+[gz-1] [INFO] [1787949968.814325298] [gz_ros_control]: 	Command:
+[gz-1] [INFO] [1787949968.814329886] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814340356] [gz_ros_control]: Loading joint: wrist_joint
+[gz-1] [INFO] [1787949968.814344554] [gz_ros_control]: 	State:
+[gz-1] [INFO] [1787949968.814348321] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814351938] [gz_ros_control]: 			 found initial value: -1.570000
+[gz-1] [INFO] [1787949968.814356657] [gz_ros_control]: 		 velocity
+[gz-1] [INFO] [1787949968.814360654] [gz_ros_control]: 	Command:
+[gz-1] [INFO] [1787949968.814364321] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814372897] [gz_ros_control]: Loading joint: gripper_baseTOwrist_joint
+[gz-1] [INFO] [1787949968.814377446] [gz_ros_control]: 	State:
+[gz-1] [INFO] [1787949968.814381263] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814385280] [gz_ros_control]: 		 velocity
+[gz-1] [INFO] [1787949968.814389218] [gz_ros_control]: 	Command:
+[gz-1] [INFO] [1787949968.814392835] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814400860] [gz_ros_control]: Loading joint: gripper_base_joint
+[gz-1] [INFO] [1787949968.814404827] [gz_ros_control]: 	State:
+[gz-1] [INFO] [1787949968.814408644] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814412602] [gz_ros_control]: 		 velocity
+[gz-1] [INFO] [1787949968.814416940] [gz_ros_control]: 	Command:
+[gz-1] [INFO] [1787949968.814420747] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814429423] [gz_ros_control]: Loading joint: right_prong_joint
+[gz-1] [INFO] [1787949968.814433721] [gz_ros_control]: 	State:
+[gz-1] [INFO] [1787949968.814437499] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814443350] [gz_ros_control]: 		 velocity
+[gz-1] [INFO] [1787949968.814450232] [gz_ros_control]: 	Command:
+[gz-1] [INFO] [1787949968.814456635] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814466233] [gz_ros_control]: Loading joint: left_prong_joint
+[gz-1] [INFO] [1787949968.814470390] [gz_ros_control]: 	State:
+[gz-1] [INFO] [1787949968.814474688] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814481471] [gz_ros_control]: 		 velocity
+[gz-1] [INFO] [1787949968.814487733] [gz_ros_control]: 	Command:
+[gz-1] [INFO] [1787949968.814492913] [gz_ros_control]: 		 position
+[gz-1] [INFO] [1787949968.814605585] [gz_ros_control]: Initialize hardware 'arm_system' 
+[gz-1] [INFO] [1787949968.819671568] [gz_ros_control]: Successful initialization of hardware 'arm_system'
+[gz-1] [INFO] [1787949968.819966383] [controller_manager]: Activating component 'arm_system'.
+[gz-1] [INFO] [1787949968.819989416] [resource_manager]: 'configure' hardware 'arm_system' 
+[gz-1] [INFO] [1787949968.819996880] [gz_ros_control]: System Successfully configured!
+[gz-1] [INFO] [1787949968.820003062] [resource_manager]: Successful 'configure' of hardware 'arm_system'
+[gz-1] [INFO] [1787949968.820012810] [resource_manager]: 'activate' hardware 'arm_system' 
+[gz-1] [INFO] [1787949968.820031094] [resource_manager]: Successful 'activate' of hardware 'arm_system'
+[gz-1] [WARN] [1787949968.820120633] [controller_manager]: Component 'arm_system' does not have read or write statistics initialized, skipping registration.
+[gz-1] [INFO] [1787949968.820130491] [controller_manager]: Resource Manager has been successfully initialized. Starting Controller Manager services...
+[gz-1] [WARN] [1787949970.643084755] [gz_ros_control]:  Desired controller update period (0.01 s) is slower than the gazebo simulation period (0.001 s).
+[INFO] [spawner-6]: process started with pid [125189]
+[spawner-6] [INFO] [1787949971.361039341] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-6] [INFO] [1787949971.617694410] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/load_controller to become available...
+[gz-1] [INFO] [1787949972.118359755] [controller_manager]: Loading controller : 'joint_state_broadcaster' of type 'joint_state_broadcaster/JointStateBroadcaster'
+[gz-1] [INFO] [1787949972.118447290] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[gz-1] [INFO] [1787949972.121145863] [controller_manager]: Controller 'joint_state_broadcaster' node arguments: '--ros-args --param use_sim_time:=true'
+[spawner-6] [INFO] [1787949972.140673525] [spawner_joint_state_broadcaster]: Loaded joint_state_broadcaster
+[gz-1] [INFO] [1787949972.141671882] [controller_manager]: Configuring controller: 'joint_state_broadcaster'
+[gz-1] [INFO] [1787949972.141898297] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. Will try to publish all available state interfaces of the URDF joints.
+[gz-1] [INFO] [1787949972.151938282] [controller_manager]: Activating controllers: [ joint_state_broadcaster ]
+[gz-1] [INFO] [1787949972.159464151] [controller_manager]: Requested controller switch from non-realtime loop
+[gz-1] [INFO] [1787949972.159596179] [controller_manager]: Successfully switched controllers!
+[spawner-6] [INFO] [1787949972.170706466] [spawner_joint_state_broadcaster]: Configured and activated joint_state_broadcaster
+[INFO] [spawner-6]: process has finished cleanly [pid 125189]
+[INFO] [spawner-7]: process started with pid [125220]
+[INFO] [spawner-8]: process started with pid [125221]
+[spawner-7] [INFO] [1787949973.435924372] [spawner_arm_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-7] [INFO] [1787949973.692122642] [spawner_arm_controller]: Setting controller param "params_file" to "['/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/config/controllers.yaml']" for arm_controller
+[gz-1] [INFO] [1787949973.695834219] [controller_manager]: Loading controller : 'arm_controller' of type 'joint_trajectory_controller/JointTrajectoryController'
+[gz-1] [INFO] [1787949973.695880005] [controller_manager]: Loading controller 'arm_controller'
+[gz-1] [INFO] [1787949973.702433877] [controller_manager]: Controller 'arm_controller' node arguments: '--ros-args --params-file /home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/config/controllers.yaml --param use_sim_time:=true'
+[spawner-7] [INFO] [1787949973.724582466] [spawner_arm_controller]: Loaded arm_controller
+[gz-1] [INFO] [1787949973.726174298] [controller_manager]: Configuring controller: 'arm_controller'
+[gz-1] [INFO] [1787949973.726373312] [arm_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gz-1] [INFO] [1787949973.726409180] [arm_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gz-1] [INFO] [1787949973.726447201] [arm_controller]: Using 'splines' interpolation method.
+[gz-1] [INFO] [1787949973.736552409] [arm_controller]: Action status changes will be monitored at 20.00 Hz.
+[gz-1] [INFO] [1787949973.744123833] [arm_controller]: Setting initial scaling factor to 1.000000
+[gz-1] [INFO] [1787949973.744162917] [arm_controller]: No scaling interface set. This controller will not read speed scaling from the hardware.
+[gz-1] [INFO] [1787949973.755185068] [controller_manager]: Activating controllers: [ arm_controller ]
+[gz-1] [INFO] [1787949973.763193464] [controller_manager]: Requested controller switch from non-realtime loop
+[gz-1] [INFO] [1787949973.763634944] [controller_manager]: Successfully switched controllers!
+[spawner-7] [INFO] [1787949973.774337535] [spawner_arm_controller]: Configured and activated arm_controller
+[spawner-8] [INFO] [1787949973.861380284] [spawner_gripper_controller]: waiting for service /controller_manager/list_controllers to become available...
+[INFO] [spawner-7]: process has finished cleanly [pid 125220]
+[spawner-8] [INFO] [1787949974.117499485] [spawner_gripper_controller]: Setting controller param "params_file" to "['/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/config/controllers.yaml']" for gripper_controller
+[spawner-8] [INFO] [1787949974.121946235] [spawner_gripper_controller]: waiting for service /controller_manager/load_controller to become available...
+[gz-1] [INFO] [1787949974.372436053] [controller_manager]: Loading controller : 'gripper_controller' of type 'joint_trajectory_controller/JointTrajectoryController'
+[gz-1] [INFO] [1787949974.372474245] [controller_manager]: Loading controller 'gripper_controller'
+[gz-1] [INFO] [1787949974.372642221] [controller_manager]: Controller 'gripper_controller' node arguments: '--ros-args --params-file /home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/config/controllers.yaml --param use_sim_time:=true'
+[spawner-8] [INFO] [1787949974.389532504] [spawner_gripper_controller]: Loaded gripper_controller
+[gz-1] [INFO] [1787949974.390588570] [controller_manager]: Configuring controller: 'gripper_controller'
+[gz-1] [INFO] [1787949974.390688007] [gripper_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gz-1] [INFO] [1787949974.390704147] [gripper_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gz-1] [INFO] [1787949974.390712132] [gripper_controller]: Using 'splines' interpolation method.
+[gz-1] [INFO] [1787949974.391722161] [gripper_controller]: Action status changes will be monitored at 20.00 Hz.
+[gz-1] [INFO] [1787949974.395262256] [gripper_controller]: Setting initial scaling factor to 1.000000
+[gz-1] [INFO] [1787949974.395322890] [gripper_controller]: No scaling interface set. This controller will not read speed scaling from the hardware.
+[gz-1] [INFO] [1787949974.400852075] [controller_manager]: Activating controllers: [ gripper_controller ]
+[gz-1] [INFO] [1787949974.408196312] [controller_manager]: Requested controller switch from non-realtime loop
+[gz-1] [INFO] [1787949974.408325735] [controller_manager]: Successfully switched controllers!
+[spawner-8] [INFO] [1787949974.419707122] [spawner_gripper_controller]: Configured and activated gripper_controller
+[INFO] [spawner-8]: process has finished cleanly [pid 125221]
+[move_group-5] [INFO] [1787949982.291416387] [move_group.moveit.moveit.ros.planning_scene_monitor]: Published update collision object
+[move_group-5] [INFO] [1787949982.392699158] [move_group.moveit.moveit.ros.planning_scene_monitor]: Published update collision object
+[move_group-5] [INFO] [1787949982.495020571] [move_group.moveit.moveit.ros.planning_scene_monitor]: Published update collision object
+[move_group-5] [INFO] [1787949983.600257674] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787949983.600992235] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787949983.601884883] [move_group.moveit.moveit.ros.move_group.move_action]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-5] [WARN] [1787949983.601927974] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-5] [INFO] [1787949983.601944295] [move_group.moveit.moveit.ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-5] [INFO] [1787949983.601978139] [move_group.moveit.moveit.ros.move_group.capability]: Using planning pipeline 'ompl'
+[move_group-5] [INFO] [1787949983.602211046] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787949983.602242045] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787949983.602248427] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787949983.602259778] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [INFO] [1787949983.602867190] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787949983.603053049] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [INFO] [1787949983.616770909] [move_group]: Calling PlanningResponseAdapter 'AddTimeOptimalParameterization'
+[move_group-5] [INFO] [1787949983.617249268] [move_group]: Calling PlanningResponseAdapter 'DisplayMotionPath'
+[move_group-5] [INFO] [1787949983.617470534] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949983.617502514] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949983.617655752] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.1
+[move_group-5] [INFO] [1787949983.621867881] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-5] [INFO] [1787949983.621925119] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949983.621945497] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949983.622073447] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to arm_controller
+[gz-1] [INFO] [1787949983.622397827] [arm_controller]: Received new action goal
+[gz-1] [INFO] [1787949983.622457840] [arm_controller]: Accepted new action goal
+[move_group-5] [INFO] [1787949983.622628611] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: arm_controller started execution
+[move_group-5] [INFO] [1787949983.622646565] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[gz-1] [INFO] [1787949984.171705499] [arm_controller]: Goal reached, success!
+[move_group-5] [INFO] [1787949984.173029719] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'arm_controller' successfully finished
+[move_group-5] [INFO] [1787949984.182131841] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-5] [INFO] [1787949984.192023106] [move_group.moveit.moveit.ros.move_group.move_action]: Solution was found and executed.
+[move_group-5] [WARN] [1787949984.192175743] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[gz-1] [INFO] [1787949984.694768222] [gripper_controller]: Received new action goal
+[gz-1] [INFO] [1787949984.694810982] [gripper_controller]: Accepted new action goal
+[gz-1] [INFO] [1787949986.196520489] [gripper_controller]: Goal reached, success!
+[move_group-5] [INFO] [1787949986.746953076] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787949986.747111394] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787949986.747201463] [move_group.moveit.moveit.ros.move_group.move_action]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-5] [WARN] [1787949986.747244945] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-5] [INFO] [1787949986.747256036] [move_group.moveit.moveit.ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-5] [INFO] [1787949986.747283547] [move_group.moveit.moveit.ros.move_group.capability]: Using planning pipeline 'ompl'
+[move_group-5] [INFO] [1787949986.747593941] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787949986.747635058] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787949986.747642202] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787949986.747657651] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [INFO] [1787949986.748217213] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787949986.748350824] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [INFO] [1787949986.762012568] [move_group]: Calling PlanningResponseAdapter 'AddTimeOptimalParameterization'
+[move_group-5] [INFO] [1787949986.764825787] [move_group]: Calling PlanningResponseAdapter 'DisplayMotionPath'
+[move_group-5] [INFO] [1787949986.765088621] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949986.765135128] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949986.765273629] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.1
+[move_group-5] [INFO] [1787949986.767096025] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-5] [INFO] [1787949986.767162880] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949986.767188649] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949986.767356354] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to arm_controller
+[gz-1] [INFO] [1787949986.767912259] [arm_controller]: Received new action goal
+[gz-1] [INFO] [1787949986.767947275] [arm_controller]: Accepted new action goal
+[move_group-5] [INFO] [1787949986.768097167] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: arm_controller started execution
+[move_group-5] [INFO] [1787949986.768107747] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[gz-1] [INFO] [1787949992.038645318] [arm_controller]: Goal reached, success!
+[move_group-5] [INFO] [1787949992.068356625] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'arm_controller' successfully finished
+[move_group-5] [INFO] [1787949992.068798095] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-5] [INFO] [1787949992.077349191] [move_group.moveit.moveit.ros.move_group.move_action]: Solution was found and executed.
+[move_group-5] [WARN] [1787949992.077651770] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[move_group-5] [INFO] [1787949992.582169147] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787949992.582326152] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787949992.588781588] [move_group.moveit.moveit.ros.move_group.move_action]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-5] [WARN] [1787949992.588820491] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-5] [INFO] [1787949992.588830189] [move_group.moveit.moveit.ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-5] [INFO] [1787949992.588874082] [move_group.moveit.moveit.ros.move_group.capability]: Using planning pipeline 'ompl'
+[move_group-5] [INFO] [1787949992.588977095] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787949992.588995099] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787949992.589000379] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787949992.589009677] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [INFO] [1787949992.589205475] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787949992.589263494] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [INFO] [1787949992.602576943] [move_group]: Calling PlanningResponseAdapter 'AddTimeOptimalParameterization'
+[move_group-5] [INFO] [1787949992.603016289] [move_group]: Calling PlanningResponseAdapter 'DisplayMotionPath'
+[move_group-5] [INFO] [1787949992.603114023] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949992.603137777] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949992.603189034] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.1
+[move_group-5] [INFO] [1787949992.609198642] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-5] [INFO] [1787949992.609323346] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949992.609355637] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949992.609519515] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to arm_controller
+[gz-1] [INFO] [1787949992.609959192] [arm_controller]: Received new action goal
+[gz-1] [INFO] [1787949992.610014526] [arm_controller]: Accepted new action goal
+[move_group-5] [INFO] [1787949992.610249557] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: arm_controller started execution
+[move_group-5] [INFO] [1787949992.610270998] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[gz-1] [INFO] [1787949994.558652283] [arm_controller]: Goal reached, success!
+[move_group-5] [INFO] [1787949994.560800932] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'arm_controller' successfully finished
+[move_group-5] [INFO] [1787949994.568818525] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-5] [INFO] [1787949994.569307184] [move_group.moveit.moveit.ros.move_group.move_action]: Solution was found and executed.
+[move_group-5] [WARN] [1787949994.569405438] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[gz-1] [INFO] [1787949995.072128482] [gripper_controller]: Received new action goal
+[gz-1] [INFO] [1787949995.072154571] [gripper_controller]: Accepted new action goal
+[gz-1] [INFO] [1787949996.573661467] [gripper_controller]: Goal reached, success!
+[move_group-5] [INFO] [1787949997.123894609] [move_group.moveit.moveit.ros.planning_scene_monitor]: Published update attached
+[move_group-5] [INFO] [1787949997.826959694] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787949997.827422985] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787949997.834046787] [move_group.moveit.moveit.ros.move_group.move_action]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-5] [WARN] [1787949997.834115787] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-5] [INFO] [1787949997.834129042] [move_group.moveit.moveit.ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-5] [INFO] [1787949997.834196088] [move_group.moveit.moveit.ros.move_group.capability]: Using planning pipeline 'ompl'
+[move_group-5] [INFO] [1787949997.834376277] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787949997.834400813] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787949997.834407576] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787949997.834419949] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [INFO] [1787949997.834868102] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787949997.834962729] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [INFO] [1787949997.849448432] [move_group]: Calling PlanningResponseAdapter 'AddTimeOptimalParameterization'
+[move_group-5] [INFO] [1787949997.850348464] [move_group]: Calling PlanningResponseAdapter 'DisplayMotionPath'
+[move_group-5] [INFO] [1787949997.850532771] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949997.850562407] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949997.850661774] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.1
+[move_group-5] [INFO] [1787949997.854079529] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-5] [INFO] [1787949997.854156784] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949997.854186079] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787949997.854390644] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to arm_controller
+[gz-1] [INFO] [1787949997.855272602] [arm_controller]: Received new action goal
+[gz-1] [INFO] [1787949997.855338526] [arm_controller]: Accepted new action goal
+[move_group-5] [INFO] [1787949997.855518925] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: arm_controller started execution
+[move_group-5] [INFO] [1787949997.855538842] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[gz-1] [INFO] [1787950000.641879141] [arm_controller]: Goal reached, success!
+[move_group-5] [INFO] [1787950000.655718308] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'arm_controller' successfully finished
+[move_group-5] [INFO] [1787950000.662237404] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-5] [INFO] [1787950000.664235601] [move_group.moveit.moveit.ros.move_group.move_action]: Solution was found and executed.
+[move_group-5] [WARN] [1787950000.664346439] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[move_group-5] [INFO] [1787950001.168070985] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787950001.168266072] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787950001.173678538] [move_group.moveit.moveit.ros.move_group.move_action]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-5] [WARN] [1787950001.173763547] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-5] [INFO] [1787950001.173784076] [move_group.moveit.moveit.ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-5] [INFO] [1787950001.173860951] [move_group.moveit.moveit.ros.move_group.capability]: Using planning pipeline 'ompl'
+[move_group-5] [INFO] [1787950001.174181353] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787950001.174236537] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787950001.174249090] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787950001.174275049] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [INFO] [1787950001.174833008] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787950001.174976127] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [INFO] [1787950001.189656626] [move_group]: Calling PlanningResponseAdapter 'AddTimeOptimalParameterization'
+[move_group-5] [INFO] [1787950001.195206911] [move_group]: Calling PlanningResponseAdapter 'DisplayMotionPath'
+[move_group-5] [INFO] [1787950001.195608245] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787950001.195650905] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787950001.195768547] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.1
+[move_group-5] [INFO] [1787950001.203574602] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-5] [INFO] [1787950001.203616030] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787950001.203635597] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787950001.203714886] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to arm_controller
+[gz-1] [INFO] [1787950001.203973832] [arm_controller]: Received new action goal
+[gz-1] [INFO] [1787950001.204009730] [arm_controller]: Accepted new action goal
+[move_group-5] [INFO] [1787950001.204126620] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: arm_controller started execution
+[move_group-5] [INFO] [1787950001.204140887] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[gz-1] [INFO] [1787950009.062202214] [arm_controller]: Goal reached, success!
+[move_group-5] [INFO] [1787950009.104331987] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'arm_controller' successfully finished
+[move_group-5] [INFO] [1787950009.112405295] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-5] [INFO] [1787950009.113823872] [move_group.moveit.moveit.ros.move_group.move_action]: Solution was found and executed.
+[move_group-5] [WARN] [1787950009.113965708] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[move_group-5] [INFO] [1787950009.617549290] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787950009.617712336] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787950009.622298087] [move_group.moveit.moveit.ros.move_group.move_action]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-5] [WARN] [1787950009.622340848] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-5] [INFO] [1787950009.622355185] [move_group.moveit.moveit.ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-5] [INFO] [1787950009.622388067] [move_group.moveit.moveit.ros.move_group.capability]: Using planning pipeline 'ompl'
+[move_group-5] [INFO] [1787950009.622555852] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787950009.622592080] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787950009.622599304] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787950009.622612549] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [INFO] [1787950009.623149638] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787950009.623272970] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [INFO] [1787950009.628692459] [move_group]: Calling PlanningResponseAdapter 'AddTimeOptimalParameterization'
+[move_group-5] [INFO] [1787950009.629330378] [move_group]: Calling PlanningResponseAdapter 'DisplayMotionPath'
+[move_group-5] [INFO] [1787950009.629470852] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787950009.629492473] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787950009.629556233] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.1
+[move_group-5] [INFO] [1787950009.632330999] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-5] [INFO] [1787950009.632378949] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787950009.632413364] [move_group.moveit.moveit.plugins.simple_controller_manager]: Returned 2 controllers in list
+[move_group-5] [INFO] [1787950009.632512300] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to arm_controller
+[gz-1] [INFO] [1787950009.632664757] [arm_controller]: Received new action goal
+[gz-1] [INFO] [1787950009.632691517] [arm_controller]: Accepted new action goal
+[move_group-5] [INFO] [1787950009.632805742] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: arm_controller started execution
+[move_group-5] [INFO] [1787950009.632816983] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[gz-1] [INFO] [1787950011.792262757] [arm_controller]: Goal reached, success!
+[move_group-5] [INFO] [1787950011.832988651] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'arm_controller' successfully finished
+[move_group-5] [INFO] [1787950011.842495904] [move_group.moveit.moveit.ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-5] [INFO] [1787950011.852471178] [move_group.moveit.moveit.ros.move_group.move_action]: Solution was found and executed.
+[move_group-5] [WARN] [1787950011.852595492] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[gz-1] [INFO] [1787950012.356940524] [gripper_controller]: Received new action goal
+[gz-1] [INFO] [1787950012.357023881] [gripper_controller]: Accepted new action goal
+[gz-1] [INFO] [1787950013.852081112] [gripper_controller]: Goal reached, success!
+[move_group-5] [INFO] [1787950014.358544698] [move_group.moveit.moveit.ros.planning_scene_monitor]: Published update attached
+[move_group-5] [INFO] [1787950014.459652429] [move_group.moveit.moveit.ros.planning_scene_monitor]: Published update collision object
+[move_group-5] [INFO] [1787950015.062936476] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787950015.063106977] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787950015.072464960] [move_group.moveit.moveit.ros.move_group.move_action]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-5] [WARN] [1787950015.072571801] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-5] [INFO] [1787950015.072588913] [move_group.moveit.moveit.ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-5] [INFO] [1787950015.072646060] [move_group.moveit.moveit.ros.move_group.capability]: Using planning pipeline 'ompl'
+[move_group-5] [INFO] [1787950015.072968376] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787950015.073010525] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787950015.073023810] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787950015.073048968] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [INFO] [1787950015.073689091] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787950015.073784180] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [WARN] [1787950015.074154286] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.074250066] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.074325978] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.074419093] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.074459029] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.074580547] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.074647994] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.074692958] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.074754564] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:134 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000797 seconds
+[move_group-5] [WARN] [1787950015.074898074] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [WARN] [1787950015.074967044] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.075010846] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.075066290] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.075162962] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.075227473] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.075264403] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [ERROR] [1787950015.075313906] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.075384478] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:134 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000559 seconds
+[move_group-5] [WARN] [1787950015.075543027] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.075588482] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.075613569] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.075646421] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.075679363] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:134 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000198 seconds
+[move_group-5] [WARN] [1787950015.083737632] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/goals/src/GoalLazySamples.cpp:129 - Goal sampling thread never did any work.
+[move_group-5] [ERROR] [1787950015.083817633] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Unable to solve the planning problem
+[move_group-5] [ERROR] [1787950015.083876493] [move_group]: Planner 'OMPL' failed with error code FAILURE
+[move_group-5] [INFO] [1787950015.083906830] [move_group.moveit.moveit.ros.move_group.move_action]: FAILURE
+[move_group-5] [WARN] [1787950015.083984717] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[move_group-5] [INFO] [1787950015.085737733] [move_group.moveit.moveit.ros.move_group.move_action]: MoveGroupMoveAction: Received request
+[move_group-5] [INFO] [1787950015.085891502] [move_group.moveit.moveit.ros.move_group.move_action]: executing..
+[move_group-5] [INFO] [1787950015.092496759] [move_group.moveit.moveit.ros.move_group.move_action]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-5] [WARN] [1787950015.092591287] [move_group.moveit.moveit.ros.move_group.capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-5] [INFO] [1787950015.092605654] [move_group.moveit.moveit.ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-5] [INFO] [1787950015.092667210] [move_group.moveit.moveit.ros.move_group.capability]: Using planning pipeline 'ompl'
+[move_group-5] [INFO] [1787950015.092922690] [move_group]: Calling PlanningRequestAdapter 'ResolveConstraintFrames'
+[move_group-5] [INFO] [1787950015.092955271] [move_group]: Calling PlanningRequestAdapter 'ValidateWorkspaceBounds'
+[move_group-5] [WARN] [1787950015.092963026] [move_group.moveit.moveit.ros.validate_workspace_bounds]: It looks like the planning volume was not specified. Using default values.
+[move_group-5] [INFO] [1787950015.092978826] [move_group]: Calling PlanningRequestAdapter 'CheckStartStateBounds'
+[move_group-5] [INFO] [1787950015.093493143] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Planner configuration 'arm[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-5] [INFO] [1787950015.093635450] [move_group]: Calling Planner 'OMPL'
+[move_group-5] [WARN] [1787950015.093791043] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [WARN] [1787950015.093825387] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.093898214] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.093966913] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.094012429] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.094095665] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.094137063] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [ERROR] [1787950015.094173672] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.094241720] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:134 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000535 seconds
+[move_group-5] [WARN] [1787950015.094353720] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.094457125] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.094501989] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [WARN] [1787950015.094536093] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [WARN] [1787950015.094573554] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.094610353] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [ERROR] [1787950015.094656850] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [ERROR] [1787950015.094690213] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.094733464] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:134 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000428 seconds
+[move_group-5] [WARN] [1787950015.094823123] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.094874419] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.094902582] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/src/Planner.cpp:248 - arm/arm[RRTConnectkConfigDefault]: Skipping invalid start state (invalid state)
+[move_group-5] [ERROR] [1787950015.094942427] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:219 - arm/arm[RRTConnectkConfigDefault]: Motion planning start tree could not be initialized!
+[move_group-5] [WARN] [1787950015.094984927] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:134 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000204 seconds
+[move_group-5] [WARN] [1787950015.103554097] [move_group.moveit.moveit.planners.ompl.planner_manager]: ./src/ompl/base/goals/src/GoalLazySamples.cpp:129 - Goal sampling thread never did any work.
+[move_group-5] [ERROR] [1787950015.103650388] [move_group.moveit.moveit.planners.ompl.model_based_planning_context]: Unable to solve the planning problem
+[move_group-5] [ERROR] [1787950015.103736239] [move_group]: Planner 'OMPL' failed with error code FAILURE
+[move_group-5] [INFO] [1787950015.103785262] [move_group.moveit.moveit.ros.move_group.move_action]: FAILURE
+[move_group-5] [WARN] [1787950015.103926046] [rclcpp_action]: publish_feedback() called on a goal handle not in executing state, ignoring
+[gz-1] [INFO] [1787950021.331321319] [controller_manager.pal_statistics]: Async messages lost 0
+[gz-1] [INFO] [1787950021.331380591] [controller_manager.pal_statistics]: publish_async_failures_ 0
+[gz-1] [INFO] [1787950021.332665326] [controller_manager.pal_statistics]: Async messages lost 0
+[gz-1] [INFO] [1787950021.332686235] [controller_manager.pal_statistics]: publish_async_failures_ 0
+[INFO] [gz-1]: process has finished cleanly [pid 124897]

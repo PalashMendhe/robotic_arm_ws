@@ -154,7 +154,7 @@
 
     <model name="obstacle">
       <static>True</static>
-      <pose>-0.05 0.0 1.0 0 0 0</pose>
+      <pose>-0.13 -0.04 1.00 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>

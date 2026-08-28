@@ -21,6 +21,7 @@ def generate_launch_description():
     kinematics_yaml = os.path.join(pkg_moveit, 'config', 'kinematics.yaml')
     ompl_yaml = os.path.join(pkg_moveit, 'config', 'ompl_planning.yaml')
     controllers_yaml = os.path.join(pkg_moveit, 'config', 'moveit_controllers.yaml')
+    joint_limits_yaml = os.path.join(pkg_moveit, 'config', 'joint_limits.yaml')
     rviz_config_path = os.path.join(pkg_moveit, 'config', 'moveit.rviz')
     gazebo_launch_path = os.path.join(pkg_robot, 'launch', 'gazebo.launch.py')
 
@@ -36,6 +37,9 @@ def generate_launch_description():
 
     with open(controllers_yaml, 'r') as f:
         controllers = yaml.safe_load(f)
+
+    with open(joint_limits_yaml, 'r') as f:
+        joint_limits = yaml.safe_load(f)
 
     # Planning pipeline dictionary
     planning_pipelines = {
@@ -86,6 +90,7 @@ def generate_launch_description():
                 {'robot_description': robot_description},
                 {'robot_description_semantic': robot_description_semantic},
                 {'robot_description_kinematics': kinematics},
+                {'robot_description_planning': joint_limits},
                 planning_pipelines,
                 controllers,
                 {'use_sim_time': True},

@@ -23,3 +23,9 @@ moveit_simple_controller_manager:
     joints:
       - right_prong_joint
       - left_prong_joint
+
+trajectory_execution:
+  manage_controllers: false
+  allowed_execution_duration_scaling: 2.0
+  allowed_goal_duration_margin: 1.0
+  allowed_start_tolerance: 0.1

@@ -128,12 +128,7 @@
         <color rgba="0.1 0.1 0.1 1"/>
       </material>
     </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
-      <geometry>
-        <cylinder radius="0.025" length="0.06"/>
-      </geometry>
-    </collision>
+    
     <xacro:cylinder_inertia m="0.3" r="0.025" h="0.06"/>
   </link>
   <joint name="base_upper_joint" type="fixed">
@@ -152,12 +147,7 @@
         <color rgba="0.1 0.1 0.1 1"/>
       </material>
     </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
-      <geometry>
-        <cylinder radius="0.025" length="0.06"/>
-      </geometry>
-    </collision>
+    
     <xacro:cylinder_inertia m="0.3" r="0.025" h="0.06"/>
   </link>
   <!-- Fixed cosmetic elbow sphere at end of upper arm -->
@@ -205,12 +195,7 @@
         <color rgba="0.1 0.1 0.1 1"/>
       </material>
     </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
-      <geometry>
-        <cylinder radius="0.025" length="0.06"/>
-      </geometry>
-    </collision>
+    
     <xacro:cylinder_inertia m="0.3" r="0.025" h="0.06"/>
   </link>
   <!-- Fixed cosmetic wrist sphere at end of forearm -->
@@ -286,12 +271,7 @@
         <color rgba="0.1 0.1 0.1 1"/>
       </material>
     </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <cylinder radius="0.02" length="0.04"/>
-      </geometry>
-    </collision>
+    
     <xacro:cylinder_inertia m="0.1" r="0.02" h="0.04"/>
   </link>
   <joint name="wrist_gripper_joint" type="fixed">

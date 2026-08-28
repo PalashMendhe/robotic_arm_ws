@@ -18,7 +18,12 @@ class PlanningSceneManager:
         if node is None:
             if not rclpy.ok():
                 rclpy.init()
-            self.node = rclpy.create_node('planning_scene_manager')
+            self.node = rclpy.create_node(
+                'planning_scene_manager',
+                parameter_overrides=[
+                    rclpy.parameter.Parameter('use_sim_time', rclpy.Parameter.Type.BOOL, True)
+                ]
+            )
             self.own_node = True
         else:
             self.node = node
@@ -97,21 +102,23 @@ class PlanningSceneManager:
         - Table: size [1.5, 1.0, 0.95] at (-0.5, 0.0, -0.475)
         - Obstacle Divider Wall: size [0.5, 0.1, 0.65] at (-0.55, 0.0, 0.05)
         """
-        # Table (Neutral Grey)
+        # Table (Neutral Grey, top at z = -0.01 for mounting clearance)
         table_color = ColorRGBA(r=0.6, g=0.6, b=0.6, a=0.85)
         self.add_box_object(
             name='table',
             size=(1.5, 1.0, 0.95),
-            position=(-0.5, 0.0, -0.475),
+            position=(-0.5, 0.0, -0.485),
             color=table_color
         )
+        self.add_obstacle()
 
-        # Obstacle Divider Wall (Orange/Rust)
-        obstacle_color = ColorRGBA(r=0.85, g=0.45, b=0.2, a=0.85)
+    def add_obstacle(self):
+        """Adds vertical wall obstacle between pick and place locations."""
+        obstacle_color = ColorRGBA(r=1.0, g=0.5, b=0.5, a=0.9)
         self.add_box_object(
             name='obstacle',
             size=(0.5, 0.1, 0.65),
-            position=(-0.55, 0.0, 0.05),
+            position=(-0.63, -0.04, 0.05),
             color=obstacle_color
         )
 
