@@ -373,12 +373,23 @@
     </collision>
     <xacro:box_inertia m="0.05" x="0.02" y="0.015" z="0.1"/>
   </link>
+
   <joint name="left_prong_joint" type="prismatic">
     <parent link="gripper_base_link"/>
     <child link="left_prong_link"/>
     <origin xyz="0 -0.02 0.018" rpy="0 0 0"/>
     <limit lower="-0.08" upper="0" effort="10" velocity="1.0"/>
     <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- ==================== GRIPPER TCP (tool center point) ==================== -->
+  <link name="gripper_tcp"/>
+
+  <joint name="gripper_base_to_tcp" type="fixed">
+    
+    <parent link="gripper_base_link"/> 
+    <child link="gripper_tcp"/>
+    <origin xyz="0.0 0.0 0.075" rpy="0.0 0.0 0.0"/>
   </joint>
   <!-- =================================================== -->
   <!-- ros2_control hardware interface -->

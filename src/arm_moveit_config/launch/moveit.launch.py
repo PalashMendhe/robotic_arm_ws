@@ -3,36 +3,28 @@ import xacro
 import yaml
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.conditions import IfCondition, UnlessCondition
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
 
 def generate_launch_description():
 
-    urdf_path = os.path.join(
-        get_package_share_directory('robotic_4dof_arm'),
-        'urdf', 'arm.urdf.xacro'
-    )
+    # Package paths
+    pkg_moveit = get_package_share_directory('arm_moveit_config')
+    pkg_robot = get_package_share_directory('robotic_4dof_arm')
 
-    srdf_path = os.path.join(
-        get_package_share_directory('arm_moveit_config'),
-        'config', 'arm.srdf'
-    )
+    urdf_path = os.path.join(pkg_robot, 'urdf', 'arm.urdf.xacro')
+    srdf_path = os.path.join(pkg_moveit, 'config', 'arm.srdf')
+    kinematics_yaml = os.path.join(pkg_moveit, 'config', 'kinematics.yaml')
+    ompl_yaml = os.path.join(pkg_moveit, 'config', 'ompl_planning.yaml')
+    controllers_yaml = os.path.join(pkg_moveit, 'config', 'moveit_controllers.yaml')
+    rviz_config_path = os.path.join(pkg_moveit, 'config', 'moveit.rviz')
+    gazebo_launch_path = os.path.join(pkg_robot, 'launch', 'gazebo.launch.py')
 
-    kinematics_yaml = os.path.join(
-        get_package_share_directory('arm_moveit_config'),
-        'config', 'kinematics.yaml'
-    )
-
-    ompl_yaml = os.path.join(
-        get_package_share_directory('arm_moveit_config'),
-        'config', 'ompl_planning.yaml'
-    )
-
-    controllers_yaml = os.path.join(
-        get_package_share_directory('arm_moveit_config'),
-        'config', 'moveit_controllers.yaml'
-    )
-
+    # Load descriptions and configurations
     robot_description = xacro.process_file(urdf_path).toxml()
     robot_description_semantic = open(srdf_path).read()
 
@@ -45,21 +37,48 @@ def generate_launch_description():
     with open(controllers_yaml, 'r') as f:
         controllers = yaml.safe_load(f)
 
-    # Structure exactly as moveit_configs_builder.py does (ROS2 Lyrical MoveIt2):
-    # planning_pipelines dict has the pipeline name as a key containing the pipeline's yaml.
-    # See: moveit_configs_utils/moveit_configs_builder.py lines 463-471
+    # Planning pipeline dictionary
     planning_pipelines = {
         'planning_pipelines': ['ompl'],
         'default_planning_pipeline': 'ompl',
-        'ompl': ompl_config,   # ompl_config contains: planning_plugins, request_adapters, response_adapters
+        'ompl': ompl_config,
     }
 
+    # Launch Configurations
+    use_rviz = LaunchConfiguration('use_rviz')
+    start_gazebo = LaunchConfiguration('start_gazebo')
+
     return LaunchDescription([
+        # Launch Arguments
+        DeclareLaunchArgument(
+            'use_rviz',
+            default_value='false',
+            description='Whether to start RViz2'
+        ),
+        DeclareLaunchArgument(
+            'start_gazebo',
+            default_value='true',
+            description='Whether to start Gazebo simulation with controllers'
+        ),
+
+        # Include Gazebo simulation bringup
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(gazebo_launch_path),
+            condition=IfCondition(start_gazebo)
+        ),
+
+        # Standalone robot_state_publisher (only if NOT running Gazebo bringup)
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
-            parameters=[{'robot_description': robot_description}]
+            parameters=[{
+                'robot_description': robot_description,
+                'use_sim_time': True
+            }],
+            condition=UnlessCondition(start_gazebo)
         ),
+
+        # MoveGroup Node (Motion Planning Core)
         Node(
             package='moveit_ros_move_group',
             executable='move_group',
@@ -69,21 +88,24 @@ def generate_launch_description():
                 {'robot_description_kinematics': kinematics},
                 planning_pipelines,
                 controllers,
-                {'use_sim_time': False},
+                {'use_sim_time': True},
             ],
             output='screen'
         ),
+
+        # Optional RViz2 with MoveIt MotionPlanning plugin
         Node(
-            package='moveit_ros_move_group',
-            executable='move_group',
+            package='rviz2',
+            executable='rviz2',
+            arguments=['-d', rviz_config_path],
             parameters=[
                 {'robot_description': robot_description},
                 {'robot_description_semantic': robot_description_semantic},
                 {'robot_description_kinematics': kinematics},
-                ompl_config,
-                controllers,
-                {'use_sim_time': True},  # changed from False
+                planning_pipelines,
+                {'use_sim_time': True},
             ],
+            condition=IfCondition(use_rviz),
             output='screen'
         ),
     ])

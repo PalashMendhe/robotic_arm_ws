@@ -14,7 +14,10 @@ find_package(geometry_msgs REQUIRED)
 install(DIRECTORY urdf launch worlds config
   DESTINATION share/${PROJECT_NAME}
 )
-install(PROGRAMS scripts/pick_and_place.py
+install(PROGRAMS 
+  scripts/pick_and_place.py
+  scripts/world_publisher.py
+  scripts/planning_scene_manager.py
   DESTINATION lib/${PROJECT_NAME}
 )
 if(BUILD_TESTING)
