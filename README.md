@@ -25,7 +25,7 @@ MoveIt 2 handles the complex tasks of inverse kinematics (IK), collision checkin
 - **ROS 2** (Middleware and Node architecture)
 - **MoveIt 2** (Motion planning and collision checking)
 - **Gazebo** (Physics simulation)
-- **Python / rclpy** (High-level control scripts)
+- **Python / rclpy** (Control scripts)
 - **URDF / Xacro** (Robot modeling)
 - **CMake & Colcon** (Build system)
 
@@ -38,26 +38,20 @@ MoveIt 2 handles the complex tasks of inverse kinematics (IK), collision checkin
    colcon build
    source install/setup.bash
    ```
-
-2. **Launch the Simulation:**
-   In your first terminal, launch the robot in Gazebo:
+2. **Clone the Repo**
    ```bash
-   ros2 launch robotic_4dof_arm gazebo.launch.py
+   git clone https://github.com/PalashMendhe/robotic_arm_ws
    ```
-
-3. **Launch MoveIt 2:**
-   In a second terminal (don't forget to source `install/setup.bash`), start the MoveIt pipeline and RViz:
+3. **Launch the Simulation**
    ```bash
    ros2 launch arm_moveit_config moveit.launch.py
    ```
-
-4. **Run the Environment & Tasks:**
-   In a third terminal, you can run the scripts to spawn collision objects or execute a pick-and-place task:
+4. **Run the pick_and_pace node**
    ```bash
-   ros2 run robotic_4dof_arm planning_scene_manager.py
+   ros2 run robotic_4dof_arm pick_and_place.py
    ```
 
-## Bugs We Have Fixed
+## Bug Fixed
 - **Self-Collisions:** Corrected the Allowed Collision Matrix (ACM) in `arm.srdf` to disable collision checking between adjacent links, which was causing immediate planning failures.
 - **Planning Scene Updates:** Resolved issues with publishing collision objects (like the table and obstacles) correctly to the MoveIt planning scene via Python scripts.
 - **URDF/SRDF Synchronization:** Fixed discrepancies between the URDF joint definitions and the SRDF planning groups to ensure stable trajectory generation.
