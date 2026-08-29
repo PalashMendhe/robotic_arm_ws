@@ -1,0 +1,5 @@
+[INFO] [launch]: All log files can be found below /home/plsh/.ros/log/2026-08-29-13-37-36-707786-Jade-147959
+[INFO] [launch]: Default logging verbosity is set to INFO
+[ERROR] [launch]: Caught exception in launch (see debug for traceback): Caught multiple exceptions when trying to load file of format [py]:
+ - XacroException: No such file or directory: /home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/urdf/arm.urdf.xacro [Errno 2] No such file or directory: '/home/plsh/robotic_arm/install/robotic_4dof_arm/share/robotic_4dof_arm/urdf/arm.urdf.xacro'
+ - InvalidFrontendLaunchFileError: The launch file may have a syntax error, or its format is unknown
