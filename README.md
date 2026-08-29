@@ -1,7 +1,7 @@
-# Robotic 6-DOF Arm (UR5 Replica)
+# Robotic 4-DOF Arm (UR5 Replica)
 
 ## Summary
-This workspace contains a custom 6-Degree-of-Freedom (DOF) robotic arm, structurally inspired by the industrial UR5 robot. The goal of this project is to build an accessible, simulated manipulator that captures the core kinematics and aesthetic of a UR5-style robot while being streamlined for easier simulation, control, and motion planning. It serves as an excellent testbed for experimenting with pick-and-place tasks, obstacle avoidance, and robotic manipulation using ROS 2 and MoveIt 2.
+This workspace contains a custom 4-Degree-of-Freedom (DOF) robotic arm, structurally inspired by the industrial UR5 robot. The goal of this project is to build an accessible, simulated manipulator that captures the core kinematics and aesthetic of a UR5-style robot while being streamlined for easier simulation, control, and motion planning. It serves as an excellent testbed for experimenting with pick-and-place tasks, obstacle avoidance, and robotic manipulation using ROS 2 and MoveIt 2.
 
 ## Demo
 *(Add your GIF here)*
