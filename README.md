@@ -5,6 +5,7 @@ This workspace contains a custom 4-Degree-of-Freedom (DOF) robotic arm, structur
 
 ## Demo
 <video src="Media/ur5_replica_demo.mp4" controls width="100%">
+</video>
 
 ## System Overview
 The system is built on **ROS 2** and uses **MoveIt 2** for motion planning and execution. The physical attributes, visual meshes, and collision models of the arm are defined using URDF/Xacro. The robot is simulated in Gazebo, which provides realistic physics and joint feedback. 
