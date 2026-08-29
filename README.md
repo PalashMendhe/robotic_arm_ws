@@ -4,7 +4,7 @@
 This workspace contains a custom 6-Degree-of-Freedom (DOF) robotic arm, structurally inspired by the industrial UR5 robot. The goal of this project is to build an accessible, simulated manipulator that captures the core kinematics and aesthetic of a UR5-style robot while being streamlined for easier simulation, control, and motion planning. It serves as an excellent testbed for experimenting with pick-and-place tasks, obstacle avoidance, and robotic manipulation using ROS 2 and MoveIt 2.
 
 ## Demo Video and GIF
-[![ur5_replica_demo](https://img.youtube.com/vi/RgYbAOJBobU/0.jpg)](https://www.youtube.com/watch?v=RgYbAOJBobU)
+![Demo Video](Media/ur5_replica_demo_gif.gif)
 
 ## System Overview
 The system is built on **ROS 2** and uses **MoveIt 2** for motion planning and execution. The physical attributes, visual meshes, and collision models of the arm are defined using URDF/Xacro. The robot is simulated in Gazebo, which provides realistic physics and joint feedback. 
