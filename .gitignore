@@ -5,4 +5,7 @@ log/
 __pycache__/
 my_key
 my_key.pub
-BUGLOG.md
+BUGLOG.md*.log
+run_clean_test.py
+run_full_test.py
+run_test.py
