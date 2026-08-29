@@ -1,9 +1,0 @@
-/home/plsh/robotic_arm/build/robotic_4dof_arm/CMakeFiles/uninstall.dir
-/home/plsh/robotic_arm/build/robotic_4dof_arm/CMakeFiles/robotic_4dof_arm_uninstall.dir
-/home/plsh/robotic_arm/build/robotic_4dof_arm/CMakeFiles/test.dir
-/home/plsh/robotic_arm/build/robotic_4dof_arm/CMakeFiles/edit_cache.dir
-/home/plsh/robotic_arm/build/robotic_4dof_arm/CMakeFiles/rebuild_cache.dir
-/home/plsh/robotic_arm/build/robotic_4dof_arm/CMakeFiles/list_install_components.dir
-/home/plsh/robotic_arm/build/robotic_4dof_arm/CMakeFiles/install.dir
-/home/plsh/robotic_arm/build/robotic_4dof_arm/CMakeFiles/install/local.dir
-/home/plsh/robotic_arm/build/robotic_4dof_arm/CMakeFiles/install/strip.dir

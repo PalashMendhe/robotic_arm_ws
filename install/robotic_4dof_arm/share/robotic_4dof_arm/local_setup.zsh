@@ -1,1 +1,0 @@
-/home/plsh/robotic_arm/build/robotic_4dof_arm/ament_cmake_environment_hooks/local_setup.zsh

@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/plsh/robotic_arm/build/robotic_4dof_arm/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
