@@ -1,13 +1,34 @@
+# ROS 2 workspaces
 build/
 install/
 log/
-*.pyc
+
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Logs and runtime files
+*.log
+moveit.log
+pnp.log
+BUGLOG.md
+
+# IDEs and OS files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*~
+
+# SSH Keys (Safety)
 my_key
 my_key.pub
-BUGLOG.md*.log
+
+# Test scripts
 run_clean_test.py
 run_full_test.py
 run_test.py
 run_*_test.py
-run_test.py*.log
