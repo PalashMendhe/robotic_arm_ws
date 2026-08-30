@@ -10,6 +10,7 @@ from moveit_msgs.msg import CollisionObject, AttachedCollisionObject, PlanningSc
 import yaml
 from ament_index_python.packages import get_package_share_directory
 
+
 class PlanningSceneManager:
     def __init__(self, node: Node = None):
         """
@@ -59,7 +60,6 @@ class PlanningSceneManager:
         """Creates and publishes a box CollisionObject with optional custom color."""
         box = SolidPrimitive()
         box.type = SolidPrimitive.BOX
-        box.dimensions = [float(size[0]), float(size[1]), float(size[2])]
         box.dimensions = [float(size[0]), float(size[1]), float(size[2])]
         pose = Pose()
         pose.position.x = float(position[0])
@@ -214,12 +214,13 @@ class PlanningSceneManager:
         self.remove_object('target_box')
         self.node.get_logger().info('Cleared all objects from planning scene.')
 
+
 def main(args=None):
     if not rclpy.ok():
         rclpy.init(args=args)
     manager = PlanningSceneManager()
     manager.init_full_scene()
-    
+
     try:
         manager.node.get_logger().info('PlanningSceneManager is active with custom colors. Press Ctrl+C to stop.')
         rclpy.spin(manager.node)

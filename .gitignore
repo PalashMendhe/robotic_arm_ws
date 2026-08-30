@@ -10,4 +10,4 @@ run_clean_test.py
 run_full_test.py
 run_test.py
 run_*_test.py
-run_test.py
+run_test.py*.log

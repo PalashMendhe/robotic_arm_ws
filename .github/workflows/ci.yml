@@ -1,0 +1,61 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # ──────────────────────────────────────────────────────────
+  # Job 1: Lint (fast — fails in ~30s without building Docker)
+  # ──────────────────────────────────────────────────────────
+  lint:
+    name: Lint & Style Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install linting tools
+        run: pip install ruff yamllint
+
+      - name: Ruff — Python lint
+        run: ruff check src/ --config ruff.toml
+
+      - name: yamllint — YAML validation
+        run: yamllint --config-file .yamllint.yaml src/
+
+  # ──────────────────────────────────────────────────────────
+  # Job 2: Build Docker & run colcon test suite
+  # ──────────────────────────────────────────────────────────
+  build-and-test:
+    name: Build Docker & Run Tests
+    runs-on: ubuntu-latest
+    needs: lint   # Only runs if lint passes
+
+    steps:
+      - name: Free up disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t robotic_arm:ci .
+
+      - name: Run colcon test suite in Docker
+        run: |
+          docker run --rm robotic_arm:ci bash -c \
+            "colcon test --packages-select robotic_4dof_arm \
+               --event-handlers console_cohesion+ \
+             && colcon test-result --verbose"

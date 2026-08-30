@@ -54,8 +54,7 @@ def generate_launch_description():
         Node(
             package='ros_gz_bridge',
             executable='parameter_bridge',
-            arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
-            output='screen'
+            arguments=['/clock@rosgraph_msgs/msg/Clock@gz.msgs.Clock'],
         ),
         # Spawn controllers after Gazebo has time to load
         TimerAction(

@@ -1,59 +1,73 @@
 # Robotic 6-DOF Arm (UR5 Replica)
 
+![CI Status](https://github.com/PalashMendhe/robotic_arm_ws/actions/workflows/ci.yml/badge.svg)
+
 ## Summary
-This workspace contains a custom 6-Degree-of-Freedom (DOF) robotic arm, structurally inspired by the industrial UR5 robot. The goal of this project is to build an accessible, simulated manipulator that captures the core kinematics and aesthetic of a UR5-style robot while being streamlined for easier simulation, control, and motion planning. It serves as an excellent testbed for experimenting with pick-and-place tasks, obstacle avoidance, and robotic manipulation using ROS 2 and MoveIt 2.
+This workspace contains a custom 6-Degree-of-Freedom (DOF) robotic arm, structurally inspired by the industrial UR5 robot. 
+
+This project serves as a **production-grade testbed** for experimenting with pick-and-place tasks, obstacle avoidance, and robotic manipulation using ROS 2 Lyrical, MoveIt 2, and Gazebo Harmonic. It features a fully dockerized environment, dynamic YAML parameterization, robust error handling, and automated CI/CD testing.
 
 ## Demo Video and GIF
 ![Demo Video](Media/ur5_replica_demo_gif.gif)
 
-## System Overview
-The system is built on **ROS 2** and uses **MoveIt 2** for motion planning and execution. The physical attributes, visual meshes, and collision models of the arm are defined using URDF/Xacro. The robot is simulated in Gazebo, which provides realistic physics and joint feedback. 
+## Key Features
+- **Production-Ready Docker Environment**: Launch the entire simulation stack instantly with zero ROS installation required, eliminating "works on my machine" bugs.
+- **Robust Error Handling**: Real-time preflight checks, workspace bounds validation, and emergency abort routines ensure safe operation.
+- **Dynamic Parameterization**: A single source of truth (`robot_params.yaml`) governs Cartesian coordinates, joint limits, velocities, and dimensions for rapid iteration without code changes.
+- **Automated Testing & CI/CD**: A comprehensive `pytest` suite runs automatically on GitHub Actions on every push to guarantee motion reliability.
+- **KDL Inverse Kinematics**: Customized IK solver configured specifically for this 6-DOF architecture.
 
-MoveIt 2 handles the complex tasks of inverse kinematics (IK), collision checking, and generating valid trajectories avoiding obstacles. High-level commands and environmental setups (like adding tables and collision boxes) are managed through custom Python ROS 2 nodes that interface with MoveIt's planning scene.
+## Quick Start (Docker - Recommended)
 
-## Packages and Directories
+The easiest way to run the simulation is using our pre-configured Docker environment.
 
-| Directory / Package | Description |
-| :--- | :--- |
-| `robotic_4dof_arm` | The core ROS 2 package. Contains the URDF/Xacro robot description, Gazebo simulation launch files, custom Python nodes (pick-and-place, scene management), and 3D meshes. |
-| `arm_moveit_config` | The MoveIt 2 configuration package. Contains the SRDF (`arm.srdf`), joint limits, kinematics settings, and MoveIt-specific launch files. |
-| `.../robotic_4dof_arm/urdf/` | Contains the `.urdf.xacro` files that assemble the robot's links, joints, and visual/collision geometries. |
-| `.../robotic_4dof_arm/scripts/` | Python executables like `pick_and_place.py` and `planning_scene_manager.py` that use `rclpy` to command the arm and manipulate the environment. |
-| `.../arm_moveit_config/config/` | YAML configuration files for the controllers and the SRDF file which defines the planning groups and the Allowed Collision Matrix (ACM). |
+1. **Build the Environment:**
+   ```bash
+   make docker-build
+   ```
+2. **Launch the Simulation:**
+   ```bash
+   make docker-sim
+   ```
+   *(Gazebo and MoveIt will launch. Wait for the arm and table to spawn).*
 
-## Tech Stack
-- **ROS 2** (Middleware and Node architecture)
-- **MoveIt 2** (Motion planning and collision checking)
-- **Gazebo** (Physics simulation)
-- **Python / rclpy** (Control scripts)
-- **URDF / Xacro** (Robot modeling)
-- **CMake & Colcon** (Build system)
+3. **Run the Autonomous Routine:**
+   Open a second terminal and run:
+   ```bash
+   make docker-run
+   ```
 
-## Quick Start
-*Note: Make sure your ROS 2 environment is sourced (e.g., `source /opt/ros/humble/setup.bash`).*
+## Quick Start (Local)
+
+If you have ROS 2 Lyrical installed locally:
 
 1. **Build the workspace:**
    ```bash
-   cd ~/robotic_arm
-   colcon build
-   source install/setup.bash
+   make build
    ```
-2. **Clone the Repo**
+2. **Launch the Simulation:**
    ```bash
-   git clone https://github.com/PalashMendhe/robotic_arm_ws
+   make sim
    ```
-3. **Launch the Simulation**
+3. **Run the Autonomous Routine:**
+   Open a second terminal and run:
    ```bash
-   ros2 launch arm_moveit_config moveit.launch.py
-   ```
-4. **Run the pick_and_pace node**
-   ```bash
-   ros2 run robotic_4dof_arm pick_and_place.py
+   make run
    ```
 
-## Bug Fixed
-- **Self-Collisions:** Corrected the Allowed Collision Matrix (ACM) in `arm.srdf` to disable collision checking between adjacent links, which was causing immediate planning failures.
-- **Planning Scene Updates:** Resolved issues with publishing collision objects (like the table and obstacles) correctly to the MoveIt planning scene via Python scripts.
-- **URDF/SRDF Synchronization:** Fixed discrepancies between the URDF joint definitions and the SRDF planning groups to ensure stable trajectory generation.
-- **Message Types & Imports:** Fixed ROS 2 Python imports and adapted ROS 1 `moveit_commander` logic to use ROS 2 `rclpy` compatible interfaces for scene management.
+## Packages and Architecture
 
+| Directory / Package | Description |
+| :--- | :--- |
+| `robotic_4dof_arm` | The core ROS 2 package containing URDF/Xacro models, Python control scripts, and the `pytest` suite. |
+| `arm_moveit_config` | MoveIt 2 configuration, including SRDF, kinematics settings, and the master `robot_params.yaml`. |
+| `Dockerfile` | Builds an isolated Ubuntu environment with all required dependencies and control libraries. |
+| `docker-compose.yml` | Maps display sockets and bridges isolated networks for seamless Gazebo UI rendering. |
+
+## Testing
+
+To run the automated test suite locally:
+```bash
+make test
+```
+The suite verifies parameter consistency, planning scene integrity, and environment dimensions.

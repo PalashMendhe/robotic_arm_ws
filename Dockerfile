@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-colcon-common-extensions \
     python3-rosdep \
     ros-lyrical-moveit \
+    ros-lyrical-ros2-control \
+    ros-lyrical-ros2-controllers \
     ros-lyrical-gz-ros2-control \
     ros-lyrical-ros-gz-sim \
     ros-lyrical-ros-gz-bridge \

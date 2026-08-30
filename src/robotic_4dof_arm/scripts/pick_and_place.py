@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-import sys
+import math
 import os
+import sys
 import time
+
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
-from geometry_msgs.msg import Pose, PoseStamped, Point, Quaternion
+from geometry_msgs.msg import Pose, Point, PoseStamped, Quaternion
 from shape_msgs.msg import SolidPrimitive
 from builtin_interfaces.msg import Duration
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
@@ -65,7 +67,6 @@ class PickAndPlace(Node):
         Returns [theta1..theta6] joint angles for a given TCP (x, y, z).
         Arm parameters: L1=0.425, L2=0.392, d4=0.109, tcp_z_offset=0.170.
         """
-        import math
         d4 = 0.109
         L1 = 0.425
         L2 = 0.392
@@ -83,8 +84,10 @@ class PickAndPlace(Node):
         cos_theta3 = (D**2 - L1**2 - L2**2) / (2 * L1 * L2)
         theta3 = math.acos(max(-1.0, min(1.0, cos_theta3)))
         theta4 = theta2 + theta3 + math.pi / 2.0
-        while theta4 > math.pi:  theta4 -= 2 * math.pi
-        while theta4 < -math.pi: theta4 += 2 * math.pi
+        while theta4 > math.pi:
+            theta4 -= 2 * math.pi
+        while theta4 < -math.pi:
+            theta4 += 2 * math.pi
         return [theta1, theta2, theta3, theta4, 0.0, 0.0]
 
     def _is_within_workspace(self, x: float, y: float, z: float) -> bool:
@@ -118,8 +121,7 @@ class PickAndPlace(Node):
                 f'Motion failed [code {result.error_code.val}]: {label}'
             )
             return False
-    
-    
+
     def move_to_pose(self, x: float, y: float, z: float, qx: float = 0.0, qy: float = 0.7071, qz: float = 0.0, qw: float = 0.7071, link_name: str = 'gripper_tcp') -> bool:
         """
         Plans and executes a collision-free path to the target Cartesian pose using MoveIt 2.
