@@ -12,13 +12,13 @@ Usage:
 """
 
 import os
+
 import xacro
 import yaml
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument
 from launch.conditions import IfCondition
-from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
@@ -26,37 +26,38 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     pkg_moveit = get_package_share_directory('arm_moveit_config')
-    pkg_robot  = get_package_share_directory('robotic_4dof_arm')
+    pkg_robot = get_package_share_directory('robotic_4dof_arm')
 
     # Config file paths
-    urdf_path         = os.path.join(pkg_robot,  'urdf',   'arm.urdf.xacro')
-    srdf_path         = os.path.join(pkg_moveit, 'config', 'arm.srdf')
-    kinematics_yaml   = os.path.join(pkg_moveit, 'config', 'kinematics_real.yaml')
-    ompl_yaml         = os.path.join(pkg_moveit, 'config', 'ompl_planning.yaml')
-    controllers_yaml  = os.path.join(pkg_moveit, 'config', 'moveit_controllers_real.yaml')
+    urdf_path = os.path.join(pkg_robot, 'urdf', 'arm.urdf.xacro')
+    srdf_path = os.path.join(pkg_moveit, 'config', 'arm.srdf')
+    kinematics_yaml = os.path.join(pkg_moveit, 'config', 'kinematics_real.yaml')
+    ompl_yaml = os.path.join(pkg_moveit, 'config', 'ompl_planning.yaml')
+    controllers_yaml = os.path.join(pkg_moveit, 'config', 'moveit_controllers_real.yaml')
     joint_limits_yaml = os.path.join(pkg_moveit, 'config', 'joint_limits.yaml')
-    rviz_config_path  = os.path.join(pkg_moveit, 'config', 'moveit.rviz')
-
-    # TODO: Set the path to your saved ur_calibration output file
-    calibration_yaml = os.path.join(pkg_moveit, 'config', 'ur5_calibration.yaml')
+    rviz_config_path = os.path.join(pkg_moveit, 'config', 'moveit.rviz')
 
     # Load descriptions
-    robot_description          = xacro.process_file(urdf_path).toxml()
+    robot_description = xacro.process_file(urdf_path).toxml()
     robot_description_semantic = open(srdf_path).read()
 
-    with open(kinematics_yaml,   'r') as f: kinematics   = yaml.safe_load(f)
-    with open(ompl_yaml,         'r') as f: ompl_config  = yaml.safe_load(f)
-    with open(controllers_yaml,  'r') as f: controllers  = yaml.safe_load(f)
-    with open(joint_limits_yaml, 'r') as f: joint_limits = yaml.safe_load(f)
+    with open(kinematics_yaml, 'r') as f:
+        kinematics = yaml.safe_load(f)
+    with open(ompl_yaml, 'r') as f:
+        ompl_config = yaml.safe_load(f)
+    with open(controllers_yaml, 'r') as f:
+        controllers = yaml.safe_load(f)
+    with open(joint_limits_yaml, 'r') as f:
+        joint_limits = yaml.safe_load(f)
 
     planning_pipelines = {
-        'planning_pipelines':        ['ompl'],
+        'planning_pipelines': ['ompl'],
         'default_planning_pipeline': 'ompl',
-        'ompl':                       ompl_config,
+        'ompl': ompl_config,
     }
 
     # Launch arguments
-    robot_ip = LaunchConfiguration('robot_ip')
+    robot_ip = LaunchConfiguration('robot_ip')  # noqa: F841 — used in hardware driver block
     use_rviz = LaunchConfiguration('use_rviz')
 
     return LaunchDescription([

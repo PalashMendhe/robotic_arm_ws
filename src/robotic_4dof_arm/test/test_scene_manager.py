@@ -19,7 +19,7 @@ def manager():
     # Patch get_package_share_directory so it finds our local config
     pkg_path = os.path.join(os.path.dirname(__file__), '..', '..', 'arm_moveit_config')
     with patch('planning_scene_manager.get_package_share_directory', return_value=pkg_path):
-        
+
         mgr = PlanningSceneManager(node=mock_node)
     return mgr
 

@@ -1,25 +1,23 @@
 #!/usr/bin/env python3
-import os
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, DurabilityPolicy, ReliabilityPolicy
-from ament_index_python.packages import get_package_share_directory
 from visualization_msgs.msg import Marker, MarkerArray
 
 class WorldPublisher(Node):
     def __init__(self):
         super().__init__('world_marker_publisher')
-        
+
         qos = QoSProfile(
             depth=1,
             durability=DurabilityPolicy.TRANSIENT_LOCAL,
             reliability=ReliabilityPolicy.RELIABLE
         )
         self.publisher = self.create_publisher(MarkerArray, '/world_markers', qos)
-        
+
         # Robot base spawn height in Gazebo world coordinates
         self.robot_base_z = 0.95
-        
+
         self.markers = self.create_world_markers()
         self.timer = self.create_timer(1.0, self.publish_markers)
         self.publish_markers()

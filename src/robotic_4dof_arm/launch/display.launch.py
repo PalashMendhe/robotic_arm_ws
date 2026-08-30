@@ -5,9 +5,9 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 
 def generate_launch_description():
-    
+
     pkg_share = get_package_share_directory('robotic_4dof_arm')
-    
+
     urdf_path = os.path.join(pkg_share, 'urdf', 'arm.urdf.xacro')
     rviz_config_path = os.path.join(pkg_share, 'config', 'display.rviz')
 

@@ -1,20 +1,17 @@
-# Ruff — Python linter & formatter config
+# Ruff — Python linter config
 # Docs: https://docs.astral.sh/ruff/
 
 [lint]
-# PEP8 style (E/W), pyflakes (F), isort (I), naming (N)
-select = ["E", "W", "F", "I", "N"]
+# E/W = PEP8, F = pyflakes, N = naming
+# Deliberately exclude I (isort) — import ordering is cosmetic for ROS 2 launch files
+select = ["E", "W", "F", "N"]
 
-# Ignore rules that conflict with ROS 2 conventions
 ignore = [
     "E501",   # Line too long — MoveIt goal chains are naturally long
-    "N803",   # Argument name should be lowercase — ROS params use CamelCase
-    "N806",   # Variable in function should be lowercase — IK uses L1, L2, D
+    "E402",   # Module import not at top — needed for sys.path hack before local imports
+    "N803",   # Argument name uppercase — ROS params use CamelCase
+    "N806",   # Variable uppercase — IK uses L1, L2, D
 ]
 
 [lint.per-file-ignores]
-"test/*.py" = ["F401"]  # Allow unused imports in test files (fixtures)
-
-[format]
-quote-style = "single"
-indent-style = "space"
+"test/*.py" = ["F401"]  # Allow unused imports in test fixture files

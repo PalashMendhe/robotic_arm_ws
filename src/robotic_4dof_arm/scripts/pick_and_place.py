@@ -7,7 +7,7 @@ import time
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
-from geometry_msgs.msg import Pose, Point, PoseStamped, Quaternion
+from geometry_msgs.msg import Pose
 from shape_msgs.msg import SolidPrimitive
 from builtin_interfaces.msg import Duration
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
