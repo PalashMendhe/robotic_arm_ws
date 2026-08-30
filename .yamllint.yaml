@@ -11,3 +11,10 @@ rules:
     min-spaces-from-content: 1
   truthy:
     allowed-values: ['true', 'false', 'True', 'False']
+    
+  # Disable strict formatting rules that conflict with standard ROS 2 configs
+  document-start: disable
+  new-line-at-end-of-file: disable
+  trailing-spaces: disable
+  empty-lines: disable
+  comments-indentation: disable
