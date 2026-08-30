@@ -1,0 +1,26 @@
+services:
+
+  sim:
+    build: .
+    image: robotic_arm:lyrical
+    container_name: arm_sim
+    environment:
+      - DISPLAY=${DISPLAY}
+      - LIBGL_ALWAYS_SOFTWARE=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    network_mode: host
+    privileged: true
+    command: >
+      ros2 launch arm_moveit_config moveit.launch.py
+
+  run:
+    build: .
+    image: robotic_arm:lyrical
+    container_name: arm_run
+    network_mode: host
+    depends_on:
+      - sim
+    command: >
+      bash -c "sleep 10 &&
+               ros2 run robotic_4dof_arm pick_and_place.py"

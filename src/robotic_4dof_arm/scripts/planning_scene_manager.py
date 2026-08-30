@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import time
 import rclpy
 from rclpy.node import Node
@@ -6,6 +7,8 @@ from std_msgs.msg import Header, ColorRGBA
 from geometry_msgs.msg import Pose
 from shape_msgs.msg import SolidPrimitive
 from moveit_msgs.msg import CollisionObject, AttachedCollisionObject, PlanningScene, ObjectColor
+import yaml
+from ament_index_python.packages import get_package_share_directory
 
 class PlanningSceneManager:
     def __init__(self, node: Node = None):
@@ -14,6 +17,10 @@ class PlanningSceneManager:
         1. Run as its own standalone ROS 2 Node (for testing).
         2. Attach to an existing PickAndPlace node instance.
         """
+        # Load parameters from YAML file
+        params_path = os.path.join(get_package_share_directory('arm_moveit_config'), 'config', 'robot_params.yaml')
+        with open(params_path, 'r') as f:
+            self.params = yaml.safe_load(f)
         self.own_node = False
         if node is None:
             if not rclpy.ok():
@@ -21,7 +28,7 @@ class PlanningSceneManager:
             self.node = rclpy.create_node(
                 'planning_scene_manager',
                 parameter_overrides=[
-                    rclpy.parameter.Parameter('use_sim_time', rclpy.Parameter.Type.BOOL, True)
+                    rclpy.parameter.Parameter('use_sim_time', rclpy.Parameter.Type.BOOL, self.params['robot']['use_sim_time'])
                 ]
             )
             self.own_node = True
@@ -53,7 +60,7 @@ class PlanningSceneManager:
         box = SolidPrimitive()
         box.type = SolidPrimitive.BOX
         box.dimensions = [float(size[0]), float(size[1]), float(size[2])]
-
+        box.dimensions = [float(size[0]), float(size[1]), float(size[2])]
         pose = Pose()
         pose.position.x = float(position[0])
         pose.position.y = float(position[1])

@@ -1,0 +1,55 @@
+robot:
+  use_sim_time: true
+
+motion:
+  max_velocity_scaling_factor: 0.3
+  max_acceleration_scaling_factor: 0.3
+  allowed_planning_time: 5.0
+  num_planning_attempts: 5
+  replan_attempts: 5
+  max_retries: 3
+  
+  position_tolerance: 0.03
+
+workspace:
+  min_corner: [-2.0, -2.0, -1.0]
+  max_corner: [2.0, 2.0, 2.0]
+
+joints:
+  arm:
+    arm_base_joint:
+      min_position: -3.14
+      max_position: 3.14
+    upper_arm_joint:
+      min_position: -3.14
+      max_position: 3.14
+    forearm_joint:
+      min_position: -3.14
+      max_position: 3.14
+    wrist_joint:
+      min_position: -3.14
+      max_position: 3.14
+    gripper_baseTOwrist_joint:
+      min_position: -3.14
+      max_position: 3.14
+    gripper_base_joint:
+      min_position: -3.14
+      max_position: 3.14
+
+  gripper:
+    right_prong_joint:
+      min_position: -0.4
+      max_position: 0
+    left_prong_joint:
+      min_position: 0.4
+      max_position: 0.0
+
+  home_position:
+    arm_base_joint: 0.0
+    upper_arm_joint: 1.57
+    forearm_joint: -1.57
+    wrist_joint: -1.57
+    gripper_baseTOwrist_joint: 0.0
+    gripper_base_joint: 0.0
+    right_prong_joint: -0.4
+    left_prong_joint: 0.4
