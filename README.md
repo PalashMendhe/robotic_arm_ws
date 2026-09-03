@@ -107,7 +107,7 @@ This repository is tested and supported on the following stack:
 
 | Component | Version |
 |---|---|
-| **OS** | Ubuntu 24.04 (Noble Numbat) / Docker |
+| **OS** | Ubuntu 26.04 (Resolute Racoon) / Docker |
 | **ROS 2** | Lyrical (or Jazzy) |
 | **Gazebo** | Harmonic |
 | **Python** | 3.12+ |
