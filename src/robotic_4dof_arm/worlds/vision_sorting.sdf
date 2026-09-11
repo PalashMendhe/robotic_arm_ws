@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="vision_sorting">
+
+    <!-- ── Physics & System Plugins ─────────────────────────────────────── -->
+    <plugin filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-user-commands-system"
+            name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-sensors-system"
+            name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <!-- ── Lighting ─────────────────────────────────────────────────────── -->
+    <light type="directional" name="sun">
+      <cast_shadows>false</cast_shadows>
+      <pose>3.5 3.5 12 0 0 0</pose>
+      <diffuse>0.95 0.95 0.95 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <direction>-0.3 0.2 -1</direction>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+
+    <light type="directional" name="ambient_fill">
+      <cast_shadows>false</cast_shadows>
+      <pose>3.5 3.5 10 0 0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>0.3 -0.2 -1</direction>
+    </light>
+
+    <!-- ── Ground Plane ──────────────────────────────────────────────────── -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane><normal>0 0 1</normal></plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>20 20</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.75 0.75 0.75 1</ambient>
+            <diffuse>0.75 0.75 0.75 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ── Table 1: Arm Mounting Table ───────────────────────────────────── -->
+    <!-- Spans x: -0.5 to +0.5, y: -0.4 to +0.4, surface at z=0.95        -->
+    <model name="table_1">
+      <static>true</static>
+      <pose>0 0 0.475 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>1.0 0.8 0.95</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>1.0 0.8 0.95</size></box>
+          </geometry>
+          <material>
+            <ambient>0.65 0.55 0.45 1</ambient>
+            <diffuse>0.65 0.55 0.45 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ── Table 2: Pickup Table (random objects spawn here) ─────────────── -->
+    <!-- Spans x: -0.60 to -1.20, y: -0.40 to +0.40, surface at z=0.95    -->
+    <model name="table_2">
+      <static>true</static>
+      <pose>-0.9 0 0.475 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.6 0.8 0.95</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.6 0.8 0.95</size></box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.65 0.75 1</ambient>
+            <diffuse>0.55 0.65 0.75 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ── Sort Zone Markers (visual only, no collision) ─────────────────── -->
+
+    <!-- RED ZONE: arm's right (-Y side), two rows of 3+2 positions         -->
+    <!-- Row 1: x=-0.28, y=-0.12/-0.24/-0.36  Row 2: x=-0.40, y=-0.12/-0.24 -->
+    <model name="red_zone_marker">
+      <static>true</static>
+      <pose>-0.34 -0.24 0.951 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.28 0.38 0.002</size></box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.2 0.2 0.6</ambient>
+            <diffuse>0.9 0.2 0.2 0.6</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- BLUE ZONE: arm's left (+Y side), mirror of red zone -->
+    <model name="blue_zone_marker">
+      <static>true</static>
+      <pose>-0.34 0.24 0.951 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.28 0.38 0.002</size></box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.9 0.6</ambient>
+            <diffuse>0.2 0.2 0.9 0.6</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ── D415 Camera (pole-mounted at edge of Table 1) ─────────────────── -->
+    <!-- Position: x=-0.45, y=0.0, z=1.45                                   -->
+    <!-- Orientation: yaw=π (facing -X toward Table 2), pitch=45° down       -->
+    <model name="d415_camera">
+      <static>true</static>
+      <pose>-0.45 0.0 1.45 0 0.785 3.14159</pose>
+
+      <link name="d415_camera_link">
+        <!-- Camera body visual -->
+        <visual name="body">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box><size>0.09 0.025 0.025</size></box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
+        </visual>
+
+        <!-- Camera pole -->
+        <visual name="pole">
+          <pose>0 0 -0.135 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.015</radius>
+              <length>0.25</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1</ambient>
+            <diffuse>0.3 0.3 0.3 1</diffuse>
+          </material>
+        </visual>
+
+        <!-- D415 RGBD Sensor -->
+        <sensor name="d415" type="rgbd_camera">
+          <pose>0 0 0 0 0 0</pose>
+          <camera>
+            <!-- D415 horizontal FOV: 69.4° = 1.2112 rad -->
+            <horizontal_fov>1.2112</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>RGB_INT8</format>
+            </image>
+            <clip>
+              <near>0.3</near>
+              <far>10.0</far>
+            </clip>
+            <depth_camera>
+              <clip>
+                <near>0.3</near>
+                <far>5.0</far>
+              </clip>
+            </depth_camera>
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+          <always_on>true</always_on>
+          <update_rate>30</update_rate>
+          <visualize>false</visualize>
+          <topic>d415</topic>
+          <gz_frame_id>d415_camera_link</gz_frame_id>
+        </sensor>
+      </link>
+    </model>
+
+  </world>
+</sdf>

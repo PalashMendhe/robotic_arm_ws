@@ -53,3 +53,29 @@ joints:
     gripper_base_joint: 0.0
     right_prong_joint: -0.4
     left_prong_joint: 0.4
+
+# Vision mode flag — set to true to subscribe to /vision/detections instead of YAML coords
+vision:
+  use_vision: false
+
+# Sort zones for the sorting controller
+# Red = arm's RIGHT (-Y), Blue = arm's LEFT (+Y)
+# Objects placed side-by-side, 12cm apart, z=1.05 (10cm above table to avoid clipping)
+# Grid: row1 (x=-0.28): 3 slots, row2 (x=-0.40): 2 slots
+sort_zones:
+  place_height: 1.05   # z coordinate for placing objects
+  pre_place_height: 1.20  # z for pre-place waypoint (approach from above)
+
+  red:   # arm's right side (-Y)
+    - [-0.28, -0.12]
+    - [-0.28, -0.24]
+    - [-0.28, -0.36]
+    - [-0.40, -0.12]
+    - [-0.40, -0.24]
+
+  blue:  # arm's left side (+Y)
+    - [-0.28,  0.12]
+    - [-0.28,  0.24]
+    - [-0.28,  0.36]
+    - [-0.40,  0.12]
+    - [-0.40,  0.24]

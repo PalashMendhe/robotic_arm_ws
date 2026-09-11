@@ -3,7 +3,7 @@ SHELL  := /bin/bash
 ROS    := /opt/ros/lyrical/setup.bash
 WS     := $(shell pwd)/install/setup.bash
 
-.PHONY: build sim run test clean docker-build docker-sim docker-run
+.PHONY: build sim run test clean docker-build docker-sim docker-run vision-sim vision-sort
 
 ## Local (sourced terminal) targets
 build:
@@ -21,6 +21,15 @@ sim:
 run:
 	source $(ROS) && source $(WS) && \
 	ros2 run robotic_4dof_arm pick_and_place.py
+
+## Vision sorting targets
+vision-sim:
+	source $(ROS) && source $(WS) && \
+	ros2 launch robotic_4dof_arm vision_sim.launch.py
+
+vision-sort:
+	source $(ROS) && source $(WS) && \
+	ros2 run robotic_4dof_arm sorting_controller.py
 
 clean:
 	rm -rf build/ install/ log/

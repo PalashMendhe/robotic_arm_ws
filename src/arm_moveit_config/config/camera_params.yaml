@@ -1,0 +1,41 @@
+# Intel RealSense D415 — simulated camera configuration
+# Adjust xyz/rpy to match your physical/SDF mount position
+
+camera:
+  name: d415
+  frame_id: d415_camera_link
+  optical_frame_id: d415_color_optical_frame
+  parent_frame: world
+
+  # Camera pole position (world frame): at edge of Table 1 facing Table 2
+  # z=1.45 → 50cm above table surface (pole height)
+  xyz: [-0.45, 0.0, 1.45]
+
+  # RPY (world frame):
+  #   roll=0, pitch=0.785 rad (45° downward tilt), yaw=3.14159 (facing -X toward Table 2)
+  rpy: [0.0, 0.785, 3.14159]
+
+# D415 intrinsics (640×480 mode)
+intrinsics:
+  width: 640
+  height: 480
+  fx: 602.0      # focal length x (pixels)
+  fy: 602.0      # focal length y (pixels)
+  cx: 320.0      # principal point x
+  cy: 240.0      # principal point y
+  depth_scale: 0.001   # Gazebo depth image: mm → m conversion factor
+
+# Topic names (after gz_ros_bridge)
+topics:
+  color_image:  /d415/image
+  depth_image:  /d415/depth_image
+  camera_info:  /d415/camera_info
+  point_cloud:  /d415/points
+
+# Depth filtering
+depth:
+  min_m: 0.30
+  max_m: 2.00
+
+# Vision output
+output_topic: /vision/detections
