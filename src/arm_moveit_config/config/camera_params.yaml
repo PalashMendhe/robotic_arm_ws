@@ -27,10 +27,10 @@ intrinsics:
 
 # Topic names (after gz_ros_bridge)
 topics:
-  color_image:  /d415/image
-  depth_image:  /d415/depth_image
-  camera_info:  /d415/camera_info
-  point_cloud:  /d415/points
+  color_image: /d415/image
+  depth_image: /d415/depth_image
+  camera_info: /d415/camera_info
+  point_cloud: /d415/points
 
 # Depth filtering
 depth:
