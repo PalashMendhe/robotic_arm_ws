@@ -19,6 +19,7 @@ install(PROGRAMS
   scripts/world_publisher.py
   scripts/planning_scene_manager.py
   scripts/camera_tf_broadcaster.py
+  scripts/shape_detector.py
   DESTINATION lib/${PROJECT_NAME}
 )
 # Testing

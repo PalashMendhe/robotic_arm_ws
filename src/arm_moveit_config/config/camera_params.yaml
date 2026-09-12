@@ -23,7 +23,7 @@ intrinsics:
   fy: 602.0      # focal length y (pixels)
   cx: 320.0      # principal point x
   cy: 240.0      # principal point y
-  depth_scale: 0.001   # Gazebo depth image: mm → m conversion factor
+  depth_scale: 1.0     # Gazebo: float32 metres (real HW = 0.001 for uint16 mm)
 
 # Topic names (after gz_ros_bridge)
 topics:
@@ -39,3 +39,12 @@ depth:
 
 # Vision output
 output_topic: /vision/detections
+
+# Detection parameters
+detection:
+  canny_low: 40
+  canny_high: 120
+  contour_area_min: 400
+  contour_area_max: 30000
+  circularity_threshold: 0.88
+  depth_scale: 1.0          # Gazebo: float32 metres (NOT 0.001)
