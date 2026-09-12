@@ -25,7 +25,7 @@ import rclpy
 import yaml
 from ament_index_python.packages import get_package_share_directory
 from cv_bridge import CvBridge
-from geometry_msgs.msg import Point, TransformStamped
+from geometry_msgs.msg import TransformStamped
 from rclpy.node import Node
 from rclpy.time import Time
 from sensor_msgs.msg import CameraInfo, Image
@@ -39,7 +39,7 @@ from vision_msgs.msg import (
 import message_filters
 
 
-class shape_detector(Node):
+class ShapeDetector(Node):
     def __init__(self):
         super().__init__('shape_detector_subscriber')
 
@@ -286,7 +286,7 @@ class shape_detector(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    shape_detector_node = shape_detector()
+    shape_detector_node = ShapeDetector()
     rclpy.spin(shape_detector_node)
     shape_detector_node.destroy_node()
     rclpy.shutdown()
