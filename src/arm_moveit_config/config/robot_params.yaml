@@ -38,11 +38,11 @@ joints:
 
   gripper:
     right_prong_joint:
-      min_position: -0.4
-      max_position: 0
+      min_position: -0.08
+      max_position: 0.08
     left_prong_joint:
-      min_position: 0.4
-      max_position: 0.0
+      min_position: -0.08
+      max_position: 0.08
 
   home_position:
     arm_base_joint: 0.0
@@ -51,8 +51,8 @@ joints:
     wrist_joint: -1.57
     gripper_baseTOwrist_joint: 0.0
     gripper_base_joint: 0.0
-    right_prong_joint: -0.4
-    left_prong_joint: 0.4
+    right_prong_joint: 0.06
+    left_prong_joint: -0.06
 
 # Vision mode flag — set to true to subscribe to /vision/detections instead of YAML coords
 vision:
@@ -63,19 +63,13 @@ vision:
 # Objects placed side-by-side, 12cm apart, z=1.05 (10cm above table to avoid clipping)
 # Grid: row1 (x=-0.28): 3 slots, row2 (x=-0.40): 2 slots
 sort_zones:
-  place_height: 1.05   # z coordinate for placing objects
-  pre_place_height: 1.20  # z for pre-place waypoint (approach from above)
+  place_height: 1.05      # world z for placing objects (arm_z = 1.05 - 0.95 = 0.10)
+  pre_place_height: 1.20  # world z for pre-place approach (arm_z = 1.20 - 0.95 = 0.25)
 
-  red:   # arm's right side (-Y)
+  red:   # arm's right side (-Y), 2 slots in a row
     - [-0.28, -0.12]
     - [-0.28, -0.24]
-    - [-0.28, -0.36]
-    - [-0.40, -0.12]
-    - [-0.40, -0.24]
 
-  blue:  # arm's left side (+Y)
-    - [-0.28, 0.12]
-    - [-0.28, 0.24]
-    - [-0.28, 0.36]
-    - [-0.40, 0.12]
-    - [-0.40, 0.24]
+  blue:  # arm's left side (+Y), 2 slots mirroring red
+    - [-0.28,  0.12]
+    - [-0.28,  0.24]

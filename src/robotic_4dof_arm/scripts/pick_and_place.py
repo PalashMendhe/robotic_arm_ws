@@ -50,6 +50,13 @@ class PickAndPlace(Node):
             self, FollowJointTrajectory, '/gripper_controller/follow_joint_trajectory'
         )
 
+        # 2b. Action client for the arm controller (preflight health check —
+        #     a missing arm controller otherwise only surfaces as mid-mission
+        #     motion failures).
+        self._arm_client = ActionClient(
+            self, FollowJointTrajectory, '/arm_controller/follow_joint_trajectory'
+        )
+
         self.joint_names = list(self.params['joints']['arm'].keys())
         self.gripper_joint_names = list(self.params['joints']['gripper'].keys())
 
@@ -61,34 +68,101 @@ class PickAndPlace(Node):
         self._gripper_client.wait_for_server()
         self.get_logger().info('Action servers connected successfully!')
 
-    def _compute_ik(self, x: float, y: float, z: float) -> list:
+    # Analytical IK geometry constants for this arm
+    D4_OFFSET        = 0.109   # wrist lateral offset (d4)
+    L1_LENGTH        = 0.425   # upper arm length
+    L2_LENGTH        = 0.392   # forearm length
+    TCP_Z_OFFSET     = 0.113   # jaw span centre: d5 (0.095) + 0.018 (prong mid-plane)
+    # Position limit of every arm joint (URDF arm.urdf.xacro: lower/upper ±3.14).
+    JOINT_LIMIT      = 3.14
+
+    @staticmethod
+    def _normalize_angle(a: float) -> float:
+        """Wrap an angle into [-pi, pi)."""
+        return (a + math.pi) % (2.0 * math.pi) - math.pi
+
+    def is_reachable(self, x: float, y: float, z: float, margin: float = 0.0) -> bool:
+        """
+        Checks whether TCP position (x, y, z) lies inside the arm's analytical
+        IK envelope. `margin` (metres) shrinks the usable reach so targets are
+        solvable with the arm not fully stretched.
+        """
+        R = math.sqrt(x**2 + y**2)
+        if R < self.D4_OFFSET:
+            return False  # wrist offset makes asin(d4/R) undefined
+        r_planar = math.sqrt(R**2 - self.D4_OFFSET**2)
+        dz = z + self.TCP_Z_OFFSET - 0.02
+        D = math.sqrt(r_planar**2 + dz**2)
+        max_reach = self.L1_LENGTH + self.L2_LENGTH - margin
+        return abs(self.L1_LENGTH - self.L2_LENGTH) <= D <= max_reach
+
+    def _compute_ik(self, x: float, y: float, z: float) -> list | None:
         """
         Analytical IK for this arm's specific geometry.
-        Returns [theta1..theta6] joint angles for a given TCP (x, y, z).
-        Arm parameters: L1=0.425, L2=0.392, d4=0.109, tcp_z_offset=0.170.
+        Returns [theta1..theta6] joint angles for a given TCP (x, y, z),
+        or None when the target is outside the reachable envelope.
+
+        IMPORTANT: unreachable targets are reported as None — silently
+        clamping acos/asin would drive the arm to a bogus fully-stretched
+        pose instead of the requested point.
         """
-        d4 = 0.109
-        L1 = 0.425
-        L2 = 0.392
-        tcp_z_offset = 0.170
+        if not self.is_reachable(x, y, z):
+            return None
         R = math.sqrt(x**2 + y**2)
-        theta1 = math.atan2(y, x) + math.asin(d4 / R)
-        r_planar = math.sqrt(R**2 - d4**2)
+        r_planar = math.sqrt(R**2 - self.D4_OFFSET**2)
         dr = r_planar
-        dz = z + tcp_z_offset - 0.02
+        dz = z + self.TCP_Z_OFFSET - 0.02
         D = math.sqrt(dr**2 + dz**2)
         beta = math.atan2(dz, dr)
-        cos_gamma = (L1**2 + D**2 - L2**2) / (2 * L1 * D)
+        cos_gamma = (self.L1_LENGTH**2 + D**2 - self.L2_LENGTH**2) / (2 * self.L1_LENGTH * D)
         gamma = math.acos(max(-1.0, min(1.0, cos_gamma)))
-        theta2 = math.pi - (beta + gamma)
-        cos_theta3 = (D**2 - L1**2 - L2**2) / (2 * L1 * L2)
-        theta3 = math.acos(max(-1.0, min(1.0, cos_theta3)))
-        theta4 = theta2 + theta3 + math.pi / 2.0
-        while theta4 > math.pi:
-            theta4 -= 2 * math.pi
-        while theta4 < -math.pi:
-            theta4 += 2 * math.pi
+        theta2 = self._normalize_angle(math.pi - (beta + gamma))
+        cos_theta3 = (D**2 - self.L1_LENGTH**2 - self.L2_LENGTH**2) / (2 * self.L1_LENGTH * self.L2_LENGTH)
+        theta3 = self._normalize_angle(math.acos(max(-1.0, min(1.0, cos_theta3))))
+        theta4 = self._normalize_angle(theta2 + theta3 + math.pi / 2.0)
+
+        # Base joint: the d4 wrist offset gives two mirrored IK branches
+        # (theta1 = a0 +- asin(d4/R)).  Raw solutions near the -x axis can
+        # exceed the URDF +-3.14 limit (e.g. 3.1482 for the pick at
+        # (-0.676, 0.105)) — MoveIt then refuses the goal.  Evaluate both
+        # branches, wrap into [-pi, pi), and take the valid one with the
+        # smaller base swing.
+        a0 = math.atan2(y, x)
+        offset = math.asin(self.D4_OFFSET / R)
+        theta1 = None
+        # The d4 wrist offset is on the +Y side of the tool plane: the
+        # correct branch is a0 + offset (verified by FK over 21 targets).
+        # min(|theta1|) picks the mirror branch for every target with y > 0,
+        # landing the TCP 2*d4 = 218 mm from the object.
+        for raw in (a0 + offset, a0 - offset):
+            candidate = self._normalize_angle(raw)
+            if abs(candidate) <= self.JOINT_LIMIT and theta1 is None:
+                theta1 = candidate
+        if theta1 is None:
+            self.get_logger().warning(
+                f'IK ({x:.3f}, {y:.3f}, {z:.3f}): no base branch inside the '
+                f'+-{self.JOINT_LIMIT:.2f} rad joint limit'
+            )
+            return None
+        for jname, angle in (('theta2', theta2), ('theta3', theta3), ('theta4', theta4)):
+            if abs(angle) > self.JOINT_LIMIT:
+                self.get_logger().warning(
+                    f'IK ({x:.3f}, {y:.3f}, {z:.3f}): {jname}={angle:.4f} exceeds '
+                    f'the +-{self.JOINT_LIMIT:.2f} rad joint limit'
+                )
+                return None
         return [theta1, theta2, theta3, theta4, 0.0, 0.0]
+
+    def _ik_or_abort(self, x: float, y: float, z: float, step: str) -> list:
+        """
+        IK wrapper for mission steps: aborts loudly when the target is
+        unreachable instead of sending a clamped (bogus) joint goal.
+        """
+        q = self._compute_ik(x, y, z)
+        if q is None:
+            self._abort(f'{step}: target ({x:.2f}, {y:.2f}, {z:.2f}) is unreachable by IK')
+        return q
+
 
     def _is_within_workspace(self, x: float, y: float, z: float) -> bool:
         """
@@ -101,6 +175,22 @@ class PickAndPlace(Node):
             ws['min_corner'][2] <= z <= ws['max_corner'][2]
         )
 
+    # Symbolic names for the moveit_msgs/MoveItErrorCodes enum.
+    _ERROR_NAMES = {
+        1: 'SUCCESS',
+        99999: 'FAILURE',
+        10001: 'PLANNING_FAILED',
+        10002: 'INVALID_MOTION_PLAN',
+        10003: 'MOTION_PLAN_INVALIDATED_BY_ENVIRONMENT_CHANGE',
+        10004: 'CONTROL_FAILED',
+        10005: 'UNACHIEVABLE',
+        10007: 'TIMED_OUT',
+        10008: 'PREEMPTED',
+        10009: 'START_STATE_IN_COLLISION',
+        10010: 'START_STATE_VIOLATES_START_STATE_CONSTRAINTS',
+        -31: 'NO_IK_SOLUTION',
+    }
+
     def _execute_move_group_goal(self, goal: MoveGroup.Goal, label: str = '') -> bool:
         future = self._move_group_client.send_goal_async(goal)
         rclpy.spin_until_future_complete(self, future)
@@ -110,17 +200,30 @@ class PickAndPlace(Node):
             return False
 
         result_future = goal_handle.get_result_async()
-        rclpy.spin_until_future_complete(self, result_future)
+        # NOTE: rclpy.spin_until_future_complete() returns None in some rclpy
+        # versions — never test its return value; test future.done() instead.
+        rclpy.spin_until_future_complete(self, result_future, timeout_sec=60.0)
+        if not result_future.done():
+            self.get_logger().error(
+                f'Motion timed out after 60 s: {label} — cancelling.'
+            )
+            goal_handle.cancel_goal()
+            return False
         result = result_future.result().result
         if result.error_code.val == 1:  # 1 = SUCCESS
             self.get_logger().info(f'{label} motion succeeded.')
             time.sleep(0.5)
             return True
-        else:
+        code = result.error_code.val
+        name = self._ERROR_NAMES.get(code, f'UNKNOWN({code})')
+        self.get_logger().error(f'Motion failed [{name} code {code}]: {label}')
+        if code == 99999:
             self.get_logger().error(
-                f'Motion failed [code {result.error_code.val}]: {label}'
+                '  FAILURE(99999) hints: a stale second move_group owns '
+                '/move_action (run `make vision-clean`), the simulation is '
+                'paused, or the controllers are not spawned.'
             )
-            return False
+        return False
 
     def move_to_pose(self, x: float, y: float, z: float, qx: float = 0.0, qy: float = 0.7071, qz: float = 0.0, qw: float = 0.7071, link_name: str = 'gripper_tcp') -> bool:
         """
@@ -207,6 +310,11 @@ class PickAndPlace(Node):
         """
         Plans and executes a collision-free motion to target joint positions using MoveIt 2.
         """
+        if joint_positions is None:
+            self.get_logger().error(
+                'move_to_joints received None (unreachable IK target). Refusing goal.'
+            )
+            return False
         self.get_logger().info(f'Planning collision-aware path to joints: {joint_positions}')
 
         goal = MoveGroup.Goal()
@@ -254,18 +362,62 @@ class PickAndPlace(Node):
         rclpy.spin_until_future_complete(self, future)
         goal_handle = future.result()
 
-        if goal_handle and goal_handle.accepted:
+        if not goal_handle or not goal_handle.accepted:
+            self.get_logger().error(f'Gripper goal REJECTED: {positions}')
+        else:
             result_future = goal_handle.get_result_async()
-            rclpy.spin_until_future_complete(self, result_future)
+            rclpy.spin_until_future_complete(self, result_future, timeout_sec=15.0)
+            if not result_future.done():
+                self.get_logger().error('Gripper motion timed out — cancelling.')
+                goal_handle.cancel_goal()
+            else:
+                res = result_future.result().result
+                if res.error_code != 0:  # FollowJointTrajectoryResult.SUCCESS = 0
+                    self.get_logger().error(
+                        f'Gripper motion failed [code {res.error_code}]: {positions}'
+                    )
         time.sleep(0.5)
+
+    # ── MoveGroup stack health ────────────────────────────────────────────
+    def _move_group_server_count(self) -> int:
+        """
+        Every live MoveGroup action server publishes one /move_action feedback
+        endpoint, so the feedback publisher count equals the server count.
+        Returns 1 when discovery reports nothing (single-server default).
+        """
+        try:
+            count = self.count_publishers('/move_action/_action/feedback')
+        except Exception:
+            return 1
+        return count if count > 0 else 1
+
+    def _duplicate_server_hint(self, server_count: int) -> str | None:
+        """Pure helper (unit-tested): actionable message when >1 server."""
+        if server_count <= 1:
+            return None
+        return (
+            f'{server_count} MoveGroup action servers own /move_action! A stale '
+            'stack answers goals with FAILURE(99999). Close old ROS terminals '
+            'or run `make vision-clean`, then restart vision-sim + vision-sort.'
+        )
 
     def preflight_check(self) -> bool:
         self.get_logger().info('Running preflight checks...')
         if not self._move_group_client.wait_for_server(timeout_sec=5.0):
             self.get_logger().error('PREFLIGHT FAIL: MoveGroup server not available.')
             return False
+        hint = self._duplicate_server_hint(self._move_group_server_count())
+        if hint:
+            self.get_logger().error(f'PREFLIGHT FAIL: {hint}')
+            return False
         if not self._gripper_client.wait_for_server(timeout_sec=5.0):
             self.get_logger().error('PREFLIGHT FAIL: Gripper server not available.')
+            return False
+        if not self._arm_client.wait_for_server(timeout_sec=5.0):
+            self.get_logger().error(
+                'PREFLIGHT FAIL: /arm_controller/follow_joint_trajectory not '
+                'available — was `make vision-sim` started (controllers spawned)?'
+            )
             return False
         from sensor_msgs.msg import JointState
         received = [False]
@@ -321,12 +473,12 @@ class PickAndPlace(Node):
 
         # 4. Move to Pre-Pick Pose (15 cm above box at x=-0.60, y=0.20)
         self.get_logger().info('\n[4/11] Planning path to Pre-Pick Pose (above box)...')
-        if not self.move_to_joints(self._compute_ik(-0.60, 0.20, 0.25)):
+        if not self.move_to_joints(self._ik_or_abort(-0.60, 0.20, 0.25, 'Step 4: Pre-Pick Pose')):
             self._abort('Step 4: Pre-Pick Pose')
 
         # 5. Descend to Grasp Pose (surrounding the target box)
         self.get_logger().info('\n[5/11] Descending to Grasp Height...')
-        if not self.move_to_joints(self._compute_ik(-0.60, 0.20, 0.05)):
+        if not self.move_to_joints(self._ik_or_abort(-0.60, 0.20, 0.05, 'Step 5: Grasp Height')):
             self._abort('Step 5: Grasp Height')
 
         # 6. Close Gripper & Attach Box in MoveIt
@@ -337,17 +489,17 @@ class PickAndPlace(Node):
 
         # 7. Lift Object (Vertical Retreat)
         self.get_logger().info('\n[7/11] Lifting Object vertically...')
-        if not self.move_to_joints(self._compute_ik(-0.60, 0.20, 0.35)):
+        if not self.move_to_joints(self._ik_or_abort(-0.60, 0.20, 0.35, 'Step 7: Lift')):
             self._abort('Step 7: Lift')
 
         # 8. Collision-Aware Transport around Obstacle to Destination Marker
         self.get_logger().info('\n[8/11] Planning Collision-Free Path AROUND Obstacle to Pre-Place...')
-        if not self.move_to_joints(self._compute_ik(-0.45, -0.25, 0.30)):
+        if not self.move_to_joints(self._ik_or_abort(-0.45, -0.25, 0.30, 'Step 8: Transport')):
             self._abort('Step 8: Transport')
 
         # 9. Descend to Place Pose (onto green destination marker)
         self.get_logger().info('\n[9/11] Lowering to Place Pose...')
-        if not self.move_to_joints(self._compute_ik(-0.45, -0.25, 0.10)):
+        if not self.move_to_joints(self._ik_or_abort(-0.45, -0.25, 0.10, 'Step 9: Place Height')):
             self._abort('Step 9: Place Height')
 
         # 10. Open Gripper & Detach Object in MoveIt
@@ -358,7 +510,7 @@ class PickAndPlace(Node):
 
         # 11. Retreat Upwards & Return to Home
         self.get_logger().info('\n[11/11] Retreating Upwards & Returning Home...')
-        if not self.move_to_joints(self._compute_ik(-0.45, -0.25, 0.30)):
+        if not self.move_to_joints(self._ik_or_abort(-0.45, -0.25, 0.30, 'Step 11: Retreat')):
             self._abort('Step 11: Retreat')
         if not self.move_to_joints(home):
             self._abort('Step 11: Return Home')

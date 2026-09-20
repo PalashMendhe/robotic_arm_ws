@@ -3,7 +3,7 @@ SHELL  := /bin/bash
 ROS    := /opt/ros/lyrical/setup.bash
 WS     := $(shell pwd)/install/setup.bash
 
-.PHONY: build sim run test clean docker-build docker-sim docker-run vision-sim vision-sort
+.PHONY: build sim run test clean docker-build docker-sim docker-run vision-sim vision-sort vision-clean
 
 ## Local (sourced terminal) targets
 build:
@@ -30,6 +30,22 @@ vision-sim:
 vision-sort:
 	source $(ROS) && source $(WS) && \
 	ros2 run robotic_4dof_arm sorting_controller.py
+
+## Kill stale Gazebo / MoveIt / controller processes without wiping the build.
+## Fixes the "duplicate action server on /move_action" failure mode: an old
+## stack still answering goals with FAILURE(99999). Patterns use the [x]
+## trick so pkill cannot match its own command line.
+vision-clean:
+	-pkill -9 -f '[m]ove_group' >/dev/null 2>&1 || true
+	-pkill -9 -f '[s]orting_controller' >/dev/null 2>&1 || true
+	-pkill -9 -f '[p]ick_and_place' >/dev/null 2>&1 || true
+	-pkill -9 -f '[r]viz2' >/dev/null 2>&1 || true
+	-pkill -9 -f '[g]z sim' >/dev/null 2>&1 || true
+	-pkill -9 -f '[p]arameter_bridge' >/dev/null 2>&1 || true
+	-pkill -9 -f '[r]obot_state_publisher' >/dev/null 2>&1 || true
+	-pkill -9 -f '[c]amera_tf_broadcaster' >/dev/null 2>&1 || true
+	-pkill -9 -f '[c]ontroller_manager.*spawner' >/dev/null 2>&1 || true
+	@echo "Stale sim processes killed. Restart: make vision-sim  (then)  make vision-sort"
 
 clean:
 	rm -rf build/ install/ log/

@@ -21,13 +21,13 @@
   </group_state>
 
   <group_state name="open" group="gripper">
-    <joint name="right_prong_joint" value="0.04"/>
-    <joint name="left_prong_joint" value="-0.04"/>
+    <joint name="right_prong_joint" value="0.06"/>
+    <joint name="left_prong_joint" value="-0.06"/>
   </group_state>
 
   <group_state name="closed" group="gripper">
-    <joint name="right_prong_joint" value="0"/>
-    <joint name="left_prong_joint" value="0"/>
+    <joint name="right_prong_joint" value="0.012"/>
+    <joint name="left_prong_joint" value="-0.012"/>
   </group_state>
 
   <!-- Complete Allowed Collision Matrix (ACM) -->

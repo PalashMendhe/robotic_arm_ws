@@ -4,7 +4,45 @@ All notable changes to this project are documented here.
 
 ---
 
-## [Unreleased] — Production Hardening Sprint 
+## [Unreleased] — Vision Sorting Bugfix Sprint
+
+### Fixed — all three vision-sorting failure modes + TF chain
+**Goal**: Every spawned object pickable, every pick at the right pose, every object sorted, no wasted motion.
+
+#### Fixed — Bug 1: picks always go to the same stretched pose
+- `pick_and_place.py` — `_compute_ik()` no longer clamps `acos`/`asin` on unreachable targets; it returns `None` instead. Added `is_reachable(x, y, z, margin)` envelope check (wrist-offset + `L1+L2` bounds), `_ik_or_abort()` wrapper that aborts loudly, and a `None` guard in `move_to_joints()`. All 7 demo call sites switched to `_ik_or_abort`.
+- `sorting_controller.py` — `_object_reachable()` verifies grasp, pre-pick AND lift waypoints (with `REACH_MARGIN_M = 0.02`) before any object becomes a candidate; unreachable detections are skipped with a warning, never picked.
+- `camera_tf_broadcaster.py` — publishes the full TF chain `world → d415_camera_link → d415_color_optical_frame` (standard `rpy = [-90°, 0, -90°]` optical rotation). Previously only the mount pose was published, so back-projected world coordinates were systematically offset.
+- `camera_params.yaml` — documents the two-step TF chain and its SDF-pose constraint.
+- `vision_sim.launch.py` — spawner constrained to the arm's true reach envelope: `x` sampled inside `[-sqrt(R_PICK_MAX² − y²), -0.63]` with `R_PICK_MAX = 0.78 m` (2 cm inside the IK limit at grasp height); deterministic reachable fallback layout replaces the old `RuntimeError` when random sampling cannot fit all objects.
+- `robot_params.yaml` — sort zones trimmed from 5 to 3 slots per class (matches `N_CUBES = N_CYLINDERS = 3` spawner capacity and `MAX_SLOTS = 3`); place-height comments now show the derived `arm_z` values.
+
+#### Fixed — Bug 2: bot sorts 2 of 3+3 (assumed object count)
+- `sorting_controller.py` — perception-driven mission loop: `home → [scan → pick → lift → traverse → place → retreat] × N → home`. The count is never assumed; the mission ends only after `EMPTY_SCANS_TO_FINISH = 2` consecutive empty scans.
+- Added cross-scan object registry (`_update_registry`, `MATCH_RADIUS_M = 0.07`) that tracks unknown objects across scans, refreshes positions on re-detection, returns candidates nearest-first, and excludes `done`/`blacklisted` entries.
+- Added Table 2 pick-region filter (`_on_pick_table`) so already-placed sort-zone objects on Table 1 are never re-picked during re-scans.
+- Zone slots assigned by per-class placement counter (`_next_zone` / `_mark_zone_used` / `_slot_index`), not detection order; retry limit (`MAX_ATTEMPTS_PER_OBJECT = 2`) with blacklist prevents infinite loops on failing objects.
+
+#### Fixed — Bug 3: wasteful home round-trips between pick and place
+- `sorting_controller.py` — `_pick_and_place(entry, zone_x, zone_y, label)` transport split into lift → traverse legs (pre-pick → lift → traverse → pre-place → place → release → retreat) so the planner cannot fold back through home; failures retry from the lifted pose via `_set_down_at` / `_retreat` instead of homing mid-swing. Home is visited exactly twice per mission (start + end).
+
+#### Added — tests
+- `test/test_vision_sorting.py` — 27 unit tests for the pure mission logic (IK reachability incl. loud `None` on the old far corner, pick-region filter, grasp+lift waypoint check, registry nearest-first/refresh/dedup/skip done+blacklisted, zone-slot ordering/exhaustion, spawner reach envelope + `MIN_SEP` + fallback layout).
+- `CMakeLists.txt` — registered `test_vision_sorting` with `ament_add_pytest_test` (same `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1` env as existing tests).
+
+#### Fixed — live-run hotfix: every motion answered FAILURE(99999)
+First live run after the sprint aborted with `Motion failed [code 99999]: Joint-space` on every goal (including the trivial "returning home") plus `Ignoring unexpected result response … more than one action server for '/move_action'` — two stacked root causes:
+- `pick_and_place.py` — IK base joint: the `d4` wrist offset gives TWO mirrored branches (`a0 ± asin(d4/R)`); the code always took `+`, and the pick at `(-0.676, 0.105)` produced `theta1 = 3.14817`, above the URDF `arm_base_joint` limit (±3.14) — an unplannable goal. `_compute_ik()` now wraps every angle into `[-π, π)`, evaluates both branches, and picks the valid one with the smaller base swing (2.8276 rad here); targets with no in-limit branch are refused loudly.
+- `pick_and_place.py` — duplicate MoveGroup detection: `_move_group_server_count()` counts publishers on `/move_action/_action/feedback` (one per live move_group); preflight refuses to start with a `make vision-clean` hint when more than one server owns the action name — the exact cause of the stale-server FAILURE(99999) storm and the "unexpected result response" warnings.
+- `pick_and_place.py` — preflight also waits for `/arm_controller/follow_joint_trajectory` (a missing arm controller previously surfaced only as mid-mission motion failures); MoveGroup results get a 60 s timeout with goal cancel instead of hanging forever.
+- `pick_and_place.py` — motion failures log the symbolic MoveIt error name (`FAILURE(99999)`, `PLANNING_FAILED(10001)`, `CONTROL_FAILED(10004)`, …) plus a diagnostic hint for `FAILURE`; `move_gripper()` now checks goal acceptance and result code instead of failing silently.
+- `sorting_controller.py` — circuit breaker: 3 consecutive failed sort cycles abort the mission early (healthy MoveIt + healthy perception never produce that pattern) instead of scanning to the end and blacklisting every object; the final home move reports failure instead of swallowing it.
+- `Makefile` — new `vision-clean` target kills stale `move_group` / Gazebo / controller processes without wiping the build (the "duplicate action server" mode was seen before — see the Docker sprint notes in `make clean`).
+- `test/test_vision_sorting.py` — 6 new regression tests (the live-failure coordinates, mirrored-branch selection, angle wrap, spawn-band limit sweep, duplicate-server hint, MoveIt error-code names) → 33 total.
+
+---
+
+## [Unreleased] — Production Hardening Sprint
 
 ### Architecture & Parameterization
 **Goal**: Single source of truth for all configuration — no hardcoded values.

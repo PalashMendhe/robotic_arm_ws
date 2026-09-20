@@ -1,5 +1,12 @@
 # Intel RealSense D415 — simulated camera configuration
 # Adjust xyz/rpy to match your physical/SDF mount position
+#
+# TF PUBLISHED (see camera_tf_broadcaster.py):
+#   1. world → d415_camera_link      from camera.xyz / camera.rpy below
+#      (must match the d415_camera model pose in vision_sorting.sdf)
+#   2. d415_camera_link → d415_color_optical_frame
+#      fixed standard camera→optical rotation rpy = [-90°, 0, -90°]
+# Both steps are required for correct back-projection in shape_detector.py.
 
 camera:
   name: d415
@@ -14,6 +21,7 @@ camera:
   # RPY (world frame):
   #   roll=0, pitch=0.785 rad (45° downward tilt), yaw=3.14159 (facing -X toward Table 2)
   rpy: [0.0, 0.785, 3.14159]
+
 
 # D415 intrinsics (640×480 mode)
 intrinsics:

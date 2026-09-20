@@ -20,6 +20,7 @@ install(PROGRAMS
   scripts/planning_scene_manager.py
   scripts/camera_tf_broadcaster.py
   scripts/shape_detector.py
+  scripts/sorting_controller.py
   DESTINATION lib/${PROJECT_NAME}
 )
 # Testing
@@ -29,6 +30,9 @@ if(BUILD_TESTING)
     ENV PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
   )
   ament_add_pytest_test(test_scene_manager test/test_scene_manager.py
+    ENV PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
+  )
+  ament_add_pytest_test(test_vision_sorting test/test_vision_sorting.py
     ENV PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
   )
 endif()

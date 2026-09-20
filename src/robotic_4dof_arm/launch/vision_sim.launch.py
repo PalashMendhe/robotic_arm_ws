@@ -8,7 +8,7 @@ Launches the vision sorting simulation:
   - ros2_control controllers
   - gz_ros_bridge (camera topics + clock + joint states)
   - camera_tf_broadcaster (world -> d415_color_optical_frame)
-  - Random object spawner (5 red cubes + 5 blue cylinders on Table 2)
+  - Random object spawner (3 red cubes + 3 blue cylinders on Table 2)
   - MoveIt move_group
 """
 
@@ -25,42 +25,74 @@ from launch.actions import ExecuteProcess, TimerAction, OpaqueFunction
 from launch.substitutions import PathJoinSubstitution
 
 
-# ── Object spawn zone (Table 2 surface, safe arm reach) ─────────────────────
+# ── Object spawn zone (Table 2 surface, INSIDE the arm's reach envelope) ────
 # Table 2 spans x: -0.60 to -1.20, y: -0.40 to +0.40
-# Arm safe reach: R = sqrt(x²+y²) ≤ 0.85m → at y=±0.35: max x ≈ -0.77
-# Use a generous zone; all positions verified within arm reach envelope
-SPAWN_X_MIN = -0.63   # just inside Table 2 far edge (Table 1 ends at -0.50)
-SPAWN_X_MAX = -0.85   # safe arm reach limit (extended from -0.80)
-SPAWN_Y_MIN = -0.35
-SPAWN_Y_MAX =  0.35
-SPAWN_Z     =  1.00   # table surface (0.95) + half object height (0.05)
-MIN_SEP     =  0.13   # 13cm centre-to-centre (10cm object + 3cm gap)
-N_CUBES     =  5
-N_CYLINDERS =  5
+#
+# REACH CONSTRAINT: the analytical IK (_compute_ik) requires
+#   sqrt(dr² + dz²) ≤ L1 + L2 = 0.817 m with dz = z + 0.15.
+# At grasp height (world z = 1.00 → arm z = 0.05) that gives a maximum
+# base radius of R ≈ 0.80 m; use 0.78 m to keep a 2 cm planning margin.
+# The spawn band is therefore x ∈ [-0.63, -sqrt(R² - y²)] — objects that
+# used to spawn near the far corner (e.g. -0.78, ±0.38 → R = 0.87 m) were
+# unreachable and made the arm drive to a clamped, fully-stretched pose.
+X_SPAWN_INNER = -0.63   # inner edge of the spawn band (Table 1 ends at -0.50)
+R_PICK_MAX    =  0.78   # arm pick radius incl. safety margin (see above)
+SPAWN_Y_MIN   = -0.38
+SPAWN_Y_MAX   =  0.38
+SPAWN_Z       =  1.00   # table surface (0.95) + half object height (0.05)
+MIN_SEP       =  0.12   # 12cm centre-to-centre (10cm object + 2cm gap)
+N_CUBES       =  2      # sort_zones grid capacity per class
+N_CYLINDERS   =  2
+MAX_SPAWN_ATTEMPTS = 10000
+
+
+def _reach_constrained_x_max(y: float) -> float:
+    """Outer (most-negative) spawn x allowed at height y by the reach envelope."""
+    return -math.sqrt(max(R_PICK_MAX**2 - y * y, 0.0))
+
+
+def _fallback_positions(n_total: int) -> list:
+    """
+    Deterministic layout used if random sampling cannot fit all objects:
+    a single line inside the reach band with exactly MIN_SEP spacing.
+    """
+    if n_total > 4:
+        raise RuntimeError(
+            f'Reach-constrained spawn zone cannot fit {n_total} objects. '
+            f'Max is 4 (2 per class).'
+        )
+    span = 0.60 / max(n_total - 1, 1)
+    return [(-0.68, SPAWN_Y_MIN + 0.08 + i * span) for i in range(n_total)]
 
 
 def _generate_positions(n_total: int) -> list:
     """Generate n_total non-overlapping (x, y) positions on Table 2.
-    Positions are bounded by the spawn zone constants defined above.
+
+    Positions are sampled inside the arm's reach-constrained band so every
+    spawned object is pickable, and separated by at least MIN_SEP.
     """
     positions = []
-    attempts = 0
-    while len(positions) < n_total:
-        x = random.uniform(SPAWN_X_MIN, SPAWN_X_MAX)
+    for _ in range(MAX_SPAWN_ATTEMPTS):
+        if len(positions) >= n_total:
+            return positions
         y = random.uniform(SPAWN_Y_MIN, SPAWN_Y_MAX)
+        x_outer = _reach_constrained_x_max(y)
+        if x_outer >= X_SPAWN_INNER:
+            continue  # no valid band at this y (cannot happen inside Y range)
+        x = random.uniform(x_outer, X_SPAWN_INNER)
         too_close = any(
             math.hypot(x - px, y - py) < MIN_SEP
             for px, py in positions
         )
         if not too_close:
             positions.append((x, y))
-        attempts += 1
-        if attempts > 10000:
-            raise RuntimeError(
-                f'Cannot fit {n_total} objects in spawn zone. '
-                f'Reduce N or MIN_SEP.'
-            )
-    return positions
+
+    # Random sampling exhausted — fall back to a guaranteed-valid layout.
+    print(
+        f'[vision_sim] Random spawn sampling failed after '
+        f'{MAX_SPAWN_ATTEMPTS} attempts; using deterministic fallback layout.'
+    )
+    return _fallback_positions(n_total)
 
 
 def _make_cube_sdf(name: str) -> str:
@@ -257,11 +289,24 @@ def generate_launch_description():
                 '/d415/depth_image@sensor_msgs/msg/Image@gz.msgs.Image',
                 '/d415/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo',
                 '/d415/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked',
+                # Jaw contact sensors (Gazebo -> ROS, idea 3a)
+                '/world/vision_sorting/model/arm/link/right_prong_link/sensor/right_prong_contact/contact'
+                '@ros_gz_interfaces/msg/Contacts@gz.msgs.Contacts',
+                '/world/vision_sorting/model/arm/link/left_prong_link/sensor/left_prong_contact/contact'
+                '@ros_gz_interfaces/msg/Contacts@gz.msgs.Contacts',
             ],
             remappings=[
                 (
                     '/world/vision_sorting/model/arm/joint_state',
                     '/joint_states'
+                ),
+                (
+                    '/world/vision_sorting/model/arm/link/right_prong_link/sensor/right_prong_contact/contact',
+                    '/gripper/right_contact'
+                ),
+                (
+                    '/world/vision_sorting/model/arm/link/left_prong_link/sensor/left_prong_contact/contact',
+                    '/gripper/left_contact'
                 ),
             ],
             output='screen'
