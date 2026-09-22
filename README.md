@@ -14,26 +14,10 @@ This project serves as a **production-grade testbed** for experimenting with pic
 
 ## 🏗️ System Architecture
 
-```mermaid
-graph TD
-    subgraph "ROS 2 Workspace"
-        A[Pick & Place Node] -->|Action Goals| B(MoveIt 2 MoveGroup)
-        A -->|Action Goals| C(Gripper Controller)
-        A -->|YAML Configs| D[(robot_params.yaml)]
-        B -->|Joint Trajectories| E[ros2_control]
-        C -->|Joint Trajectories| E
-    end
-    
-    subgraph "Gazebo Simulation"
-        E <-->|Plugin| F[Gazebo Harmonic]
-        F -->|/joint_states| B
-        F -->|/clock| A
-    end
-    
-    subgraph "Hardware Deployment (Future)"
-        E -.->|ur_robot_driver| G[Physical UR5 Controller]
-    end
-```
+<div align="center">
+  <img src="Media/System_arch_for_the_arm.png" alt="End-to-End System Architecture" width="85%"/>
+  <p><em>Complete robotic arm system architecture across Moveit2, 6-DOF Manipulation, Gazebo Harmonic ODE Physics, and CI.</em></p>
+</div>
 
 ## 🚀 Quick Start (Docker - Recommended)
 
